@@ -1,0 +1,80 @@
+/* Space out content a bit */
+body {
+  padding-top: 15px;
+  padding-bottom: 0px;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.img-in-a-car {
+  background-image: url("/images/whyilyft-1-windshield.b0f40aa7.jpg");
+}
+
+.bkg-aquamarine {
+ background-color: #7FFFD4;
+}
+
+
+.navbar-offset {
+  padding-top: 100px;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: white
+}
+.jumbotron .btn {
+  font-size: 21px;
+  padding: 14px 24px;
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+.none-border-bottom {
+  border-bottom: none;
+}
+
+.border-none {
+  border: none;
+}
+
+.pitch-time {
+  background-color: #39AE82;
+  color: #FFF;
+}
+
+.red-text h1 {
+   color: #F10C5A; 
+}
+
+.red {
+  color: #F10C5A;
+}
+
+.footer {
+  background-color: #323232;
+  color: #FBFFFF;
+
+  border: none;
+
+  padding-top: 0px;
+  padding-bottom: 200px;
+  
+  margin-top: 100px;
+  margin-bottom: 0px;
+}
+

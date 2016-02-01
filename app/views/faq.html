@@ -1,0 +1,23 @@
+<navigation></navigation>
+<div class="container navbar-offset">
+  <div class="jumbotron jumbo">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row marketing">
+            <h1>Vanliga frågor</h1>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div ng-repeat="q in questions" ng-init="q.show=false" class="col-md-12" >
+          <h3><a ng-click="q.show=!q.show">{{q.question}}
+            <span class="glyphicon glyphicon-menu-down" aria-hidden="true" ng-show="q.show===false"></span>
+            <span class="glyphicon glyphicon-menu-up" aria-hidden="true" ng-show="q.show===true"></span></a>
+          </h3>
+          <p ng-show="q.show">{{q.answer}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
