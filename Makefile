@@ -26,6 +26,7 @@ distro:
 	ls dist
 	-mkdir distro
 	-rm $(name)
+	cp -r app/data dist/data
 	cp -r dist $(name)
 	zip -r distro/$(name).zip $(name) > /dev/null
 	rm -rf $(name)

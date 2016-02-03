@@ -1,0 +1,29 @@
+[{
+  "id": "0",
+  "name": "Kroppkakor",
+  "description": "Äkta kroppkakor från Öland",
+  "price": 35,
+  "image": "data/images/943-kroppkakor_500x380.jpg",
+  "chef": {
+    "id": "0",
+    "firstname": "Anneli",
+    "lastname": "Håkansson"
+  },
+  "rate:": {
+    "value": 4
+  }
+}, {
+  "id": "1",
+  "name": "Vårrullar",
+  "description": "Vårrullar från Thailand",
+  "price": 30,
+  "image": "data/images/293-varrullar_500x380.jpg",
+  "chef": {
+    "id": "0",
+    "firstname": "Bee",
+    "lastname": ""
+  },
+  "rate:": {
+    "value": 14
+  }
+}]

@@ -39,6 +39,18 @@ angular
         templateUrl: 'views/signin.html',
         controller: 'SigninCtrl'
       })
+      .when('/home', {
+        templateUrl: 'views/home.html',
+        controller: 'HomeCtrl'
+      })
+      .when('/account', {
+        templateUrl: 'views/account.html',
+        controller: 'AccountCtrl'
+      })
+      .when('/orders', {
+        templateUrl: 'views/orders.html',
+        controller: 'OrdersCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

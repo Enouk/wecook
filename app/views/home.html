@@ -1,0 +1,19 @@
+<home-navigation></home-navigation>
+<div class="navbar-offset">
+  <div class="container">
+    <div class="row">
+      <div ng-repeat="product in products" class="col-sm-6 col-md-6">
+        <div class="thumbnail">
+          <img ng-src="{{product.image}}">
+          <div class="caption">
+            <h3>{{product.name}} <small>{{product.chef.firstname}}</small></h3>
+            <p>{{product.description}}</p>
+            <div class="btn-group" role="group">
+              <p><a class="btn btn-success" role="button" ng-click="order(product)">Beställ</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

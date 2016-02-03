@@ -1,0 +1,32 @@
+<home-navigation></home-navigation>
+<div class="navbar-offset">
+  <div class="container">
+    <div class="jumbotron jumbo none-border-bottom">
+      <!-- No order -->
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row marketing text-center">
+              <h1>{{ calculateSum() }} kr</h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="page-header none-border-bottom">
+            <h3>Beställningar</h3>
+            <dl>
+              <div ng-repeat="o in orders">
+                <dt>{{o.name}} <small>av {{o.chef.firstname}}</small></dt>
+                <dd>{{o.description}}</dd>
+                <dt>{{o.price}} kr</dt>
+              </div>
+            </dl>
+          </div>
+        </div>
+        <div class="row">
+          <button type="button" class="btn btn-success">Betala</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
