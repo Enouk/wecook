@@ -1,15 +1,31 @@
 <home-navigation></home-navigation>
-<div class="navbar-offset">
+<div class="home-offset">
   <div class="container">
     <div class="row">
-      <div ng-repeat="product in products" class="col-sm-6 col-md-6">
-        <div class="thumbnail">
-          <img ng-src="{{product.image}}">
-          <div class="caption">
-            <h3>{{product.name}} <small>{{product.chef.firstname}}</small></h3>
-            <p>{{product.description}}</p>
-            <div class="btn-group" role="group">
-              <p><a class="btn btn-success" role="button" ng-click="order(product)">Beställ</a></p>
+      <div class="container">
+        <h3>Våra Kök</h3>
+        <div ng-repeat="chef in chefs" class="col-sm-6 col-md-6">
+          <div class="thumbnail">
+            <img ng-src="{{chef.images.thumbnail}}">
+            <div class="caption">
+              <h3>{{chef.firstname}}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="container">
+        <h3>Måltider</h3>
+        <div ng-repeat="product in products" class="col-sm-6 col-md-6">
+          <div class="thumbnail">
+            <img ng-src="{{product.image}}">
+            <div class="caption">
+              <h3><a href="#/product/{{product.id}}">{{product.name}}</a> <small>{{product.chef.firstname}}</small> <span class="pull-right">{{product.price}} kr</span></h3>
+              <p>{{product.description}}</p>
+              <div class="btn-group" role="group">
+                <p><a class="btn btn-success" role="button" ng-click="order(product)">Beställ</a></p>
+              </div>
             </div>
           </div>
         </div>

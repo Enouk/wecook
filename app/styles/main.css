@@ -25,6 +25,10 @@ body {
   padding-top: 100px;
 }
 
+.home-offset {
+  padding-top: 50px;
+}
+
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;

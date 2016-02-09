@@ -16,6 +16,24 @@
     <!-- endbuild -->
   </head>
   <body ng-app="wecookApp">
+
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '966757563410792',
+          xfbml      : true,
+          version    : 'v2.5'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -72,6 +90,8 @@
         <script src="scripts/services/product-service.js"></script>
         <script src="scripts/services/client.js"></script>
         <script src="scripts/controllers/orders.js"></script>
+        <script src="scripts/services/chef-service.js"></script>
+        <script src="scripts/controllers/product.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -8,6 +8,7 @@ angular.module('wecookApp')
     var _orders = [];
 
     var _products;
+    var _chefs;
 
     this.getUser = function() {
       return _user;
@@ -43,6 +44,14 @@ angular.module('wecookApp')
     this.removeOrder = function(product) {
       var index = _orders.indexOf(product);
       _orders.splice(index, 1);
+    };
+
+    this.setChefs = function(chefs) {
+      _chefs = chefs;
+    };
+
+    this.getChefs = function() {
+      return _chefs;
     };
 
   });

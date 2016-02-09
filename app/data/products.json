@@ -4,6 +4,9 @@
   "description": "Äkta kroppkakor från Öland",
   "price": 35,
   "image": "data/images/943-kroppkakor_500x380.jpg",
+  "ingredients": [
+    "Mjöl", "Ägg"
+  ],
   "chef": {
     "id": "0",
     "firstname": "Anneli",
@@ -18,6 +21,9 @@
   "description": "Vårrullar från Thailand",
   "price": 30,
   "image": "data/images/293-varrullar_500x380.jpg",
+  "ingredients": [
+    "Mjöl", "Ägg"
+  ],
   "chef": {
     "id": "0",
     "firstname": "Bee",

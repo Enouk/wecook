@@ -7,23 +7,21 @@
         <div class="row">
           <div class="col-md-12">
             <div class="row marketing text-center">
-              <h1>{{ calculateSum() }} kr</h1>
+              <img ng-src="{{product.image}}">
             </div>
           </div>
         </div>
         <div class="row">
-          <button type="button" class="btn btn-success">Betala</button>
-        </div>
-        <div class="row">
           <div class="page-header none-border-bottom">
-            <h3>Beställningar</h3>
-            <dl>
-              <div ng-repeat="o in orders track by $index">
-                <dt>{{o.name}} <small>av {{o.chef.firstname}}</small></dt>
-                <dd>{{o.description}}</dd>
-                <dt>{{o.price}} kr</dt>
-              </div>
-            </dl>
+            <h3>{{product.name}} {{product.price}} kr</h3>
+            <dl>{{product.description}}</dl>
+            <h4>Ingredients</h4>
+            <div>
+              <dl>{{product.ingredients}}</dl>
+            </div>
+            <div class="btn-group" role="group">
+              <p><a class="btn btn-success" role="button" ng-click="order(product)">Beställ</a></p>
+            </div>
           </div>
         </div>
       </div>

@@ -1,0 +1,19 @@
+[{
+  "id": "0",
+  "firstname": "Anneli",
+  "lastname": "Håkansson",
+  "images": {
+    "thumbnail": "data/images/kock_2.jpg"
+  },
+  "rating": {
+    "rate": 16
+  },
+  "reviews": [{
+    "id": "0",
+    "order_id": "0",
+    "guest_id": "0",
+    "created_at": "2015-10-01",
+    "rate": 3,
+    "msg": "Fantastiskt goda vårfullar"
+  }]
+}]
