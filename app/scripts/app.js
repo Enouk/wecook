@@ -55,6 +55,26 @@ angular
         templateUrl: 'views/product.html',
         controller: 'ProductCtrl'
       })
+      .when('/kitchen', {
+        templateUrl: 'views/kitchen.html',
+        controller: 'KitchenCtrl'
+      })
+      .when('/chef/:id', {
+        templateUrl: 'views/chef.html',
+        controller: 'ChefCtrl'
+      })
+      .when('/chefs', {
+        templateUrl: 'views/chefs.html',
+        controller: 'ChefsCtrl'
+      })
+      .when('/chef_admin', {
+        templateUrl: 'views/chef_admin.html',
+        controller: 'ChefAdminCtrl'
+      })
+      .when('/register', {
+        templateUrl: 'views/register.html',
+        controller: 'RegisterCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

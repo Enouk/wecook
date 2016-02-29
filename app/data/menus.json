@@ -1,0 +1,35 @@
+[{
+  "id": "0.2016.01",
+  "week": "3",
+  "days": [{
+    "id": "0",
+    "number": "3",
+    "name": "Torsdag",
+    "maxPortions": "8",
+    "product": {
+      "id": "1",
+      "name": "Vårrullar",
+      "description": "Vårrullar från Thailand",
+      "price": "30",
+      "image": "data/images/293-varrullar_500x380.jpg",
+      "ingredients": [
+        "Mjöl", "Ägg"
+      ]
+    }
+  }, {
+    "id": "0",
+    "number": "4",
+    "name": "Fredag",
+    "maxPortions": "8",
+    "product": {
+      "id": "1",
+      "name": "Vårrullar",
+      "description": "Vårrullar från Thailand",
+      "price": "30",
+      "image": "data/images/293-varrullar_500x380.jpg",
+      "ingredients": [
+        "Mjöl", "Ägg"
+      ]
+    }
+  }]
+}]

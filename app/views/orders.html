@@ -19,8 +19,8 @@
             <h3>Beställningar</h3>
             <dl>
               <div ng-repeat="o in orders track by $index">
-                <dt>{{o.name}} <small>av {{o.chef.firstname}}</small></dt>
-                <dd>{{o.description}}</dd>
+                <dt>{{o.product.name}} <small>av {{o.chef.firstname}}</small></dt>
+                <dd>{{o.product.description}}</dd>
                 <dt>{{o.price}} kr</dt>
               </div>
             </dl>

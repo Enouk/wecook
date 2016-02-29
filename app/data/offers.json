@@ -1,0 +1,69 @@
+[{
+  "id": "0",
+  "lastOrderDate": "2016-02-27",
+  "deliveryDate": "2016-02-28",
+  "price": 30,
+  "minOrders": "4",
+  "maxOrders": "8",
+  "chef": {
+    "id": "0",
+    "firstname": "Anneli",
+    "lastname": "Håkansson",
+    "thumbnail": "data/images/kock_2.jpg"
+  },
+  "product": {
+    "id": "1",
+    "name": "Vårrullar",
+    "description": "Vårrullar från Thailand",
+    "image": "data/images/293-varrullar_500x380.jpg",
+    "ingredients": [
+      "Mjöl", "Ägg"
+    ]
+  },
+
+  "orders": [{
+    "guest": {
+      "id": "0",
+      "firstname": "Stefan",
+      "lastname": "Löfven"
+    }
+  }, {
+    "guest": {
+      "id": "1",
+      "firstname": "Mona",
+      "lastname": "Sahlin"
+    }
+  }]
+
+}, {
+  "id": "1",
+  "lastOrderDate": "2016-02-27",
+  "deliveryDate": "2016-02-28",
+  "price": 35,
+  "minOrders": "4",
+  "maxOrders": "8",
+  "chef": {
+    "id": "0",
+    "firstname": "Anneli",
+    "lastname": "Håkansson",
+    "thumbnail": "data/images/kock_2.jpg"
+  },
+  "product": {
+    "id": "1",
+    "name": "Kroppkakor",
+    "description": "Äkta kroppkakor från Öland",
+    "image": "data/images/293-varrullar_500x380.jpg",
+    "ingredients": [
+      "Mjöl", "Ägg"
+    ]
+  },
+
+  "orders": [{
+    "guest": {
+      "id": "0",
+      "firstname": "Stefan",
+      "lastname": "Löfven"
+    }
+  }]
+
+}]

@@ -27,7 +27,7 @@ angular.module('wecookApp')
       answer: 'Tejst tar en avgift på varje beställning på 20 procent av slutpriset'
     },{
       question: 'Vilka tjänster tillhandahåller Tejst',
-      answer: 'Tejst sköter alla beställningar och betalningar så våra medlemmar kan fokusera på att njuta av god mat. En proffesionell fotograf kommer också hem till varje kock för att fotografera rätterna, vi vill att dom ska se lika bra ut som dom smakar!'
+      answer: 'Tejst sköter alla beställningar och betalningar så våra medlemmar kan fokusera på att njuta av god mat. En professionell fotograf kommer också hem till varje kock för att fotografera rätterna, vi vill att dom ska se lika bra ut som dom smakar!'
     }];
 
   });

@@ -1,1 +1,40 @@
-<p>This is the account view.</p>
+<home-navigation></home-navigation>
+<div class="home-offset">
+  <div class="jumbotron jumbo">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row marketing text-center">
+            <h1>{{user.firstName}}, Här är ditt konto</h1>
+            <p>Nedan hittar du all information om ditt konto</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron jumbo">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <h4>Kunduppgifter</h4>
+        </div>
+        <div class="col-md-9">
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" ng-model="user.firstName" placeholder="Förnamn">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" ng-model="user.lastName" placeholder="Efternamn">
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" ng-model="user.email" placeholder="Email">
+            </div>
+          </form>
+        </div>
+        <div class="col-md-1">
+          <button class="btn btn-default">Spara</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

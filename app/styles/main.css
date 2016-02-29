@@ -1,6 +1,6 @@
 /* Space out content a bit */
 body {
-  padding-top: 15px;
+  padding-top: 0px;
   padding-bottom: 0px;
 }
 
@@ -20,9 +20,8 @@ body {
  background-color: #7FFFD4;
 }
 
-
 .navbar-offset {
-  padding-top: 100px;
+  padding-top: 115px;
 }
 
 .home-offset {
@@ -50,6 +49,10 @@ body {
 
 .none-border-bottom {
   border-bottom: none;
+}
+
+.box-shadow-none {
+  box-shadow: none;
 }
 
 .border-none {
@@ -82,3 +85,31 @@ body {
   margin-bottom: 0px;
 }
 
+.chef-profile-background{
+  background-repeat: repeat;
+  width: 100%;
+  height: 300px
+}
+
+.chef-profile-avatar {
+  padding-top: 30px;
+  width: 200px;
+  height: 200px;
+}
+
+.chef-profile-avatar-img {
+  width: 100%;
+  height: 100%;
+}
+
+.chef-settings {
+  padding-top: 0px;
+}
+
+.padding-top-none {
+  padding-top: 0px;
+}
+
+.background-edit {
+  background-color: #FFF5CF;
+}

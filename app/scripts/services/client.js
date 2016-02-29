@@ -8,6 +8,7 @@ angular.module('wecookApp')
     var _orders = [];
 
     var _products;
+    var _offers;
     var _chefs;
 
     this.getUser = function() {
@@ -25,6 +26,10 @@ angular.module('wecookApp')
       return undefined;
     };
 
+    this.addProduct = function(product) {
+      _products.push(product);
+    };
+
     this.getProducts = function() {
       return _products;
     };
@@ -37,12 +42,12 @@ angular.module('wecookApp')
       return _orders;
     };
 
-    this.addOrder = function(product) {
-      _orders.push(product);
+    this.addOrder = function(offer) {
+      _orders.push(offer);
     };
 
-    this.removeOrder = function(product) {
-      var index = _orders.indexOf(product);
+    this.removeOrder = function(offer) {
+      var index = _orders.indexOf(offer);
       _orders.splice(index, 1);
     };
 
@@ -50,8 +55,27 @@ angular.module('wecookApp')
       _chefs = chefs;
     };
 
+    this.getChef = function(id) {
+      for (var i = 0; i < _chefs.length; i++) {
+        var chef = _chefs[i];
+        if (chef.id === id) {
+          return chef;
+        }
+      }
+
+      return undefined;
+    };
+
     this.getChefs = function() {
       return _chefs;
+    };
+
+    this.setOffers = function(offers) {
+      _offers = offers;
+    };
+
+    this.getOffers = function() {
+      return _offers;
     };
 
   });

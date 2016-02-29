@@ -1,0 +1,85 @@
+<home-navigation></home-navigation>
+<div class="home-offset">
+  <div class="container-fluid">
+    <div class="row" ng-style="{'background-image':'url(/data/images/backgrounds_green_flower.jpg)'}">
+      <div class="chef-profile-backgound">
+        <div class="container">
+          <div class="chef-profile-avatar">
+            <a class="thumbnail">
+              <img src="{{chef.images.thumbnail}}">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div>
+            <h3>{{chef.firstname}} {{chef.lastname}}</h3>
+            <p>{{chef.bio}}</p>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="page-header none-border-bottom">
+            <ul class="nav nav-tabs nav-justified">
+              <li role="presentation" ng-class="{active: tab===TABS.MENU}" ng-click="tab=TABS.MENU"><a>Meny</a></li>
+              <!-- <li role="presentation" ng-class="{active: tab===TABS.CATERING}" ng-click="tab=TABS.CATERING"><a>Catering</a></li> -->
+              <li role="presentation" ng-class="{active: tab===TABS.PRODUCTS}" ng-click="tab=TABS.PRODUCTS"><a>Rätter</a></li>
+            </ul>
+          </div>
+          <!-- Meny -->
+          <div class="jumbotron jumbo none-border-bottom padding-top-none" ng-show="tab === TABS.MENU">
+            <div class="container">
+              <div class="row">
+                <div class="page-header none-border-bottom">
+                  <h3>{{chef.firstname}}'s meny </h3>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+<!--               <h2>Vecka {{menu.week}}</h2>
+              <nav>
+                <ul class="pager">
+                  <li ng-click="previousWeek()"><a>Föregående</a></li>
+                  <li ng-click="nextWeek()"><a>Nästa</a></li>
+                </ul>
+              </nav> -->
+              <div ng-repeat="d in menu.days track by $index">
+                <h3>{{d.name}}</h3>
+                <p>{{d.product.name}}</p>
+                <h4>{{d.product.price}} kr</h4>
+                <h4>{{d.info.maxPortions}}</h4>
+                <a class="btn btn-default" role="button">Reservera</a>
+              </div>
+            </div>
+          </div>
+          <!-- Products -->
+          <div class="jumbotron jumbo none-border-bottom padding-top-none" ng-show="tab === TABS.PRODUCTS">
+            <div class="container">
+              <div class="row">
+                <div class="page-header none-border-bottom">
+                  <h3>{{chef.firstname}}'s rätter </h3>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <tr ng-repeat="p in products | orderBy:'name'">
+                    <td>
+                      <dl>
+                        <dt>{{p.name}}</dt>
+                        <dd>{{p.description}}</dd>
+                        <dd>{{p.price}} kr</dd>
+                      </dl>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

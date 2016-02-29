@@ -2,7 +2,7 @@
 
 
 angular.module('wecookApp')
-  .controller('HomeCtrl', function($scope, ProductService, ChefService, Client) {
+  .controller('HomeCtrl', function($scope, ProductService, ChefService, OfferService, Client) {
 
     $scope.init = function() {
 
@@ -26,12 +26,23 @@ angular.module('wecookApp')
           $scope.info = undefined;
           $scope.error = 'Kunde ej hämta produktlistan';
         });
+
+      OfferService.getOffers()
+        .success(function(offers) {
+
+          Client.setOffers(offers);
+          $scope.offers = Client.getOffers();
+        })
+        .error(function() {
+          $scope.info = undefined;
+          $scope.error = 'Kunde ej hämta erbjudanden';
+        });
     };
 
     $scope.init();
 
-    $scope.order = function(product) {
-      Client.addOrder(product);
+    $scope.order = function(offer) {
+      Client.addOrder(offer);
     };
 
   });

@@ -2,7 +2,10 @@
   "id": "0",
   "firstname": "Anneli",
   "lastname": "Håkansson",
+  "bio": "Gillar Ungersk mat och kakor",
   "images": {
+    "background":"data/images/backgrounds_green_flower.jpg",
+    "avatar":"data/images/kock_2.jpg",
     "thumbnail": "data/images/kock_2.jpg"
   },
   "rating": {
