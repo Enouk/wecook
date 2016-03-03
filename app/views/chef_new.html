@@ -15,8 +15,16 @@
   <div class="row">
     <div class="col-md-12">
       <div class="row marketing text-center">
+        <button type="button" class="btn btn-primary btn-large" ng-click="facebookLogin()">Fyll i med Facebook</button>
+        {{user}}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row marketing text-center">
         <div class="panel panel-default">
-          <div class="panel-heading text-center">Registrera konto</div>
+          <div class="panel-heading text-center">Dina uppgifter</div>
           <div class="panel-body">
             <div class="container">
               <div class="row">
@@ -25,27 +33,27 @@
                     <div class="panel-body">
                       <form name="userForm" role="form" ng-submit="userForm.$valid && register()" novalidate>
                         <fieldset>
-                          <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && submitted }">
-                            <input class="form-control" placeholder="Din email" ng-model="email" name="email" type="email" required/>
-                          </div>
-                          <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && submitted }">
-                            <input class="form-control" placeholder="Välj ett password" ng-model="password" name="password" type="password" value="" required/>
-                          </div>
                           <div class="form-group" ng-class="{ 'has-error' : userForm.firstname.$invalid && submitted }">
-                            <input class="form-control" placeholder="Ditt förnamn" ng-model="firstname" name="firstname" type="text" required/>
+                            <input class="form-control" placeholder="Ditt förnamn" ng-model="user.first_name" name="firstname" type="text" required/>
                             <!-- <p class="alert alert-danger">Username is taken</p> -->
                           </div>
                           <div class="form-group" ng-class="{ 'has-error' : userForm.lastname.$invalid && submitted }">
-                            <input class="form-control" placeholder="Ditt efternamn" ng-model="lastname" name="lastname" type="text" required/>
+                            <input class="form-control" placeholder="Ditt efternamn" ng-model="user.last_name" name="lastname" type="text" required/>
                             <!-- <p class="alert alert-danger">Username is taken</p> -->
                           </div>
+                          <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && submitted }">
+                            <input class="form-control" placeholder="Din email" ng-model="user.email" name="email" type="text" required/>
+                          </div>
+                          <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && submitted }" ng-if="user.id===undefined">
+                            <input class="form-control" placeholder="Välj ett lösenord" ng-model="user.password" name="password" type="password" value="" required/>
+                          </div>
                           <div class="form-group" ng-class="{ 'has-error' : userForm.phone.$invalid && submitted }">
-                            <input class="form-control" placeholder="Ditt telefon nummer" ng-model="phone" name="phone" type="text" required/>
+                            <input class="form-control" placeholder="Ditt telefonnummer" ng-model="user.phone" name="phone" type="text" required/>
                             <!-- <p class="alert alert-danger">Username is taken</p> -->
                           </div>
                           <!-- Change this to a button or input when using this as a form -->
                           <div class="form-group">
-                            <button type="submit" class="btn btn-success" ng-click="submitted=true">Skicka</button>
+                            <button type="submit" class="btn btn-success btn-large" ng-click="submitted=true">Skapa konto</button>
                           </div>
                         </fieldset>
                       </form>

@@ -15,9 +15,14 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'facebook'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, FacebookProvider) {
+      // Set your appId through the setAppId method or
+     // use the shortcut in the initialize method directly.
+     FacebookProvider.init('966757563410792');
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
