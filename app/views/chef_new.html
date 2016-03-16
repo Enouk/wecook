@@ -34,11 +34,11 @@
                       <form name="userForm" role="form" ng-submit="userForm.$valid && register()" novalidate>
                         <fieldset>
                           <div class="form-group" ng-class="{ 'has-error' : userForm.firstname.$invalid && submitted }">
-                            <input class="form-control" placeholder="Ditt förnamn" ng-model="user.first_name" name="firstname" type="text" required/>
+                            <input class="form-control" placeholder="Ditt förnamn" ng-model="user.firstname" name="firstname" type="text" required/>
                             <!-- <p class="alert alert-danger">Username is taken</p> -->
                           </div>
                           <div class="form-group" ng-class="{ 'has-error' : userForm.lastname.$invalid && submitted }">
-                            <input class="form-control" placeholder="Ditt efternamn" ng-model="user.last_name" name="lastname" type="text" required/>
+                            <input class="form-control" placeholder="Ditt efternamn" ng-model="user.lastname" name="lastname" type="text" required/>
                             <!-- <p class="alert alert-danger">Username is taken</p> -->
                           </div>
                           <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && submitted }">

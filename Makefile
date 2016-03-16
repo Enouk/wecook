@@ -16,8 +16,8 @@ build:
 	grunt build
 
 stage:
-	-rm -rf app/bower_components
-	ln -s $(PWD)/bower_components app/bower_components
+	-rm -rf $(CURDIR)/app/bower_components
+	ln -s $(CURDIR)/bower_components $(CURDIR)/app/bower_components
 
 distro-clean:
 	-rm -rf distro
