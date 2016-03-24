@@ -2,7 +2,7 @@
 
 
 angular.module('wecookApp')
-  .controller('SigninCtrl', function($scope, $location, Facebook) {
+  .controller('SigninCtrl', function($scope, $location, Facebook, AuthService, Client, ChefService) {
 
     $scope.facebookLogin = function() {
       Facebook.login(function(response) {
@@ -38,7 +38,36 @@ angular.module('wecookApp')
     });
 
     $scope.signin = function() {
-      $location.path('/home');
+
+      AuthService.login($scope.username, $scope.password)
+        .success(function(result) {
+
+          $scope.error = null;
+
+          Client.setUser(result.user);
+          Client.setSessionId(result.sessionId);
+
+          ChefService.getChef(result.user.id)
+            .success(function(chef) {
+              Client.setUserChef(chef)
+              $location.path('/home');
+            })
+            .error(function() {
+              // Ingen kock
+            });
+
+        })
+        .error(function(data) {
+          if (data.error === 'invalid_password') {
+            $scope.error = 'Fel lösenord';
+          } else if (data.error === 'invalid_username_password') {
+            $scope.error = 'Ogiltigt username/lösenord';
+          } else if (data.error === 'user_locked') {
+            $scope.error = 'Användaren är låst';
+          } else {
+            $scope.error = 'Internt fel, försök igen senare';
+          }
+        });
     };
 
   });

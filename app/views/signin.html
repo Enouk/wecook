@@ -9,19 +9,20 @@
           </div>
         </div>
       </div>
-      <div class="row">
+<!--       <div class="row">
         <div class="col-md-12">
           <div class="row marketing">
             <button type="button" class="btn btn-primary btn-large" ng-click="facebookLogin()">Logga in med Facebook</button>
             {{user}}
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
         <div class="panel-default">
           <div class="panel-body">
+            <div class="alert alert-danger" ng-show="error!=null">{{error}}</div>
             <form name="signinForm" role="form" ng-submit="signinForm.$valid && signin()" novalidate>
               <fieldset>
                 <div class="form-group" ng-class="{ 'has-error' : signinForm.username.$invalid && submitted }">

@@ -31,6 +31,7 @@
                 <div class="col-md-6 col-md-offset-3">
                   <div class="panel-default">
                     <div class="panel-body">
+                    <div class="alert alert-danger" ng-show="error!=null">{{error}}</div>
                       <form name="userForm" role="form" ng-submit="userForm.$valid && register()" novalidate>
                         <fieldset>
                           <div class="form-group" ng-class="{ 'has-error' : userForm.firstname.$invalid && submitted }">
@@ -44,11 +45,22 @@
                           <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && submitted }">
                             <input class="form-control" placeholder="Din email" ng-model="user.email" name="email" type="text" required/>
                           </div>
+                          <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && submitted }">
+                            <input class="form-control" placeholder="Välj ett användarnamn" ng-model="user.username" name="username" type="username" value="" required/>
+                          </div>
                           <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && submitted }" ng-if="user.id===undefined">
                             <input class="form-control" placeholder="Välj ett lösenord" ng-model="user.password" name="password" type="password" value="" required/>
                           </div>
+                          <div class="form-group" ng-class="{ 'has-error' : userForm.address.$invalid && submitted }">
+                            <input class="form-control" placeholder="Din address" ng-model="user.address" name="address" type="text" required/>
+                            <!-- <p class="alert alert-danger">Username is taken</p> -->
+                          </div>
                           <div class="form-group" ng-class="{ 'has-error' : userForm.phone.$invalid && submitted }">
                             <input class="form-control" placeholder="Ditt telefonnummer" ng-model="user.phone" name="phone" type="text" required/>
+                            <!-- <p class="alert alert-danger">Username is taken</p> -->
+                          </div>
+                          <div class="form-group" ng-class="{ 'has-error' : userForm.bio.$invalid && submitted }">
+                            <textarea class="form-control" placeholder="Skriv lite om dig själv och din mat" ng-model="user.bio" name="bio" type="text" required/>
                             <!-- <p class="alert alert-danger">Username is taken</p> -->
                           </div>
                           <!-- Change this to a button or input when using this as a form -->

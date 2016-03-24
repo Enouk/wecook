@@ -16,7 +16,7 @@ angular.module('wecookApp')
           $scope.error = 'Kunde ej hämta kockarna';
         });
 
-      ProductService.getProducts()
+      ProductService.getAllProducts()
         .success(function(products) {
 
           Client.setProducts(products);
@@ -27,7 +27,7 @@ angular.module('wecookApp')
           $scope.error = 'Kunde ej hämta produktlistan';
         });
 
-      OfferService.getOffers()
+      OfferService.getAllOffers()
         .success(function(offers) {
 
           Client.setOffers(offers);

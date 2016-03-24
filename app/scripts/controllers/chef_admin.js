@@ -2,7 +2,7 @@
 
 
 angular.module('wecookApp')
-  .controller('ChefAdminCtrl', function($scope, $routeParams, Client, ChefService, MenuService, ProductService) {
+  .controller('ChefAdminCtrl', function($scope, $routeParams, Client, ChefService, OfferService, ProductService) {
 
     $scope.TABS = {
       MENU: 0,
@@ -42,32 +42,19 @@ angular.module('wecookApp')
 
     var id = '0';
 
-    ChefService.getChefs()
-      .success(function(chefs) {
-        for (var i = 0; i < chefs.length; i++) {
-          var chef = chefs[i];
-          if (chef.id === id) {
+    $scope.chef = Client.getUserChef();
 
-            $scope.chef = chef;
-          }
-        }
-      })
-      .error(function() {
-        $scope.info = undefined;
-        $scope.error = 'Kunde ej hämta kockarna';
-      });
-
-    MenuService.getMenus()
-      .success(function(menus) {
+    OfferService.getChefOffers($scope.chef.id)
+      .success(function(offers) {
         // Pick out the first
-        $scope.menu = menus[0];
+        $scope.menu = offers;
       })
       .error(function() {
         $scope.info = undefined;
-        $scope.error = 'Kunde ej hämta kockarna';
+        $scope.error = 'Kunde ej hämta menyn';
       });
 
-    ProductService.getProducts()
+    ProductService.getChefProducts($scope.chef.id)
       .success(function(products) {
         // Pick out the first
         $scope.products = products;
@@ -95,7 +82,7 @@ angular.module('wecookApp')
       $scope.chef.bio = $scope.chef.$bio;
     };
 
-    $scope.addNewProduct = function() {
+    $scope.createProduct = function() {
       $scope.newProduct = {};
     };
 
@@ -104,25 +91,78 @@ angular.module('wecookApp')
     };
 
     $scope.saveProduct = function(product) {
-      //Client.addProduct(product);
-      $scope.products.push(product);
-      $scope.newProduct = undefined;
+
+      ProductService.addProduct(product)
+        .success(function(createdProduct) {
+
+          $scope.products.push(createdProduct);
+          $scope.newProduct = undefined;
+        })
+        .error(function() {
+          $scope.info = undefined;
+          $scope.error = 'Kunde ej spara produkt';
+        });
     };
 
-    $scope.addNewDay = function() {
-      $scope.newDay = {};
+    $scope.removeProduct = function(product) {
+      ProductService.removeProduct(product)
+        .success(function() {
+
+          var index = $scope.products.indexOf(product);
+          $scope.products.splice(index, 1);
+
+        })
+        .error(function() {
+          $scope.info = undefined;
+          $scope.error = 'Kunde ej tabort produkt';
+        });
     };
 
-    $scope.cancelNewDay = function() {
-      $scope.newDay = undefined;
+    $scope.createOffer = function() {
+      $scope.newOffer = {};
+      $scope.error = undefined;
     };
 
-    $scope.saveNewDay = function(day) {
-      $scope.newDay = undefined;
+    $scope.cancelOffer = function() {
+      $scope.newOffer = undefined;
     };
 
-    $scope.order = function(product) {
-      Client.addOrder(product);
+    $scope.saveOffer = function(offer) {
+
+      offer.productId = offer.product.id;
+      offer.childPrice = offer.adultPrice;
+
+      OfferService.saveOffer(offer)
+        .success(function(createdOffer) {
+          $scope.menu.push(createdOffer);
+          $scope.newOffer = undefined;
+        })
+        .error(function(data) {
+          if (data.error === 'invalid_product_id') {
+            $scope.error = 'Ingen produkt vald';
+          } else if (data.error === 'invalid_adult_price') {
+            $scope.error = 'Inget pris angivet';
+          } else if (data.error === 'invalid_last_order_date') {
+            $scope.error = 'Inget giltigt beställningsdatum angivet';
+          } else if (data.error === 'invalid_delivery_date') {
+            $scope.error = 'Inget giltigt leveransdatum angivet';
+          } else {
+            $scope.error = 'Internt fel, vänligen försök senare';
+          }
+        });
+    };
+
+    $scope.removeOffer = function(offer) {
+      OfferService.removeOffer(offer)
+        .success(function() {
+          var index = $scope.menu.indexOf(offer);
+          $scope.menu.splice(index, 1);
+
+        })
+        .error(function() {
+          $scope.info = undefined;
+          $scope.error = 'Kunde ej tabort';
+        });
     };
 
   });

@@ -1,10 +1,12 @@
 'use strict';
 
-
 angular.module('wecookApp')
   .service('Client', function() {
 
     var _user;
+    var _chef;
+    var _guest;
+    var _sessionId;
     var _orders = [];
 
     var _products;
@@ -13,6 +15,34 @@ angular.module('wecookApp')
 
     this.getUser = function() {
       return _user;
+    };
+
+    this.setUser = function(user) {
+      _user = user;
+    };
+
+    this.getSessionId = function() {
+      return _sessionId;
+    };
+
+    this.setSessionId = function(SessionId) {
+      _sessionId = SessionId;
+    };
+
+    this.getUserChef = function() {
+      return _user.chef;
+    };
+
+    this.setUserChef = function(chef) {
+      _user.chef = chef;
+    };
+
+    this.getUserGuest = function() {
+      return _user.guest;
+    };
+
+    this.setUserGuest = function(guest) {
+      _user.guest = guest;
     };
 
     this.getProduct = function(id) {

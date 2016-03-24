@@ -2,7 +2,7 @@
 
 
 angular.module('wecookApp')
-  .controller('ChefCtrl', function($scope, $routeParams, Client, ChefService, MenuService, ProductService) {
+  .controller('ChefCtrl', function($scope, $routeParams, Client, ChefService, OfferService, ProductService) {
 
     $scope.TABS = {
       MENU: 0,
@@ -19,32 +19,26 @@ angular.module('wecookApp')
 
     var id = $routeParams.id;
 
-    ChefService.getChefs()
-      .success(function(chefs) {
-        for (var i = 0; i < chefs.length; i++) {
-          var chef = chefs[i];
-          if (chef.id === id) {
-
-            $scope.chef = chef;
-          }
-        }
+    ChefService.getChef(id)
+      .success(function(chef) {
+        $scope.chef = chef;
       })
       .error(function() {
         $scope.info = undefined;
-        $scope.error = 'Kunde ej hämta kockarna';
+        $scope.error = 'Kunde ej hämta kocken';
       });
 
-    MenuService.getMenus()
-      .success(function(menus) {
+    OfferService.getChefOffers(id)
+      .success(function(offers) {
         // Pick out the first
-        $scope.menu = menus[0];
+        $scope.menu = offers;
       })
       .error(function() {
         $scope.info = undefined;
         $scope.error = 'Kunde ej hämta menyerna';
       });
 
-    ProductService.getProducts()
+    ProductService.getChefProducts(id)
       .success(function(products) {
         // Pick out the first
         $scope.products = products;

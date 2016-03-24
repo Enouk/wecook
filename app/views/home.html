@@ -9,34 +9,34 @@
             <div class="thumbnail">
               <img ng-src="{{offer.chef.thumbnail}}">
               <div class="caption">
-                <h4>{{offer.product.name}} <span class="pull-right">{{offer.price}} kr</span></h4>
+                <h4>{{offer.product.name}} <span class="pull-right">{{offer.adultPrice}} kr</span></h4>
                 <p>{{offer.product.description}}</p>
                 <a href="#/chef/{{offer.chef.id}}"><h5>{{offer.chef.firstname}} {{offer.chef.lastname}}</h5></a>
                 <div class="progress">
-                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{offer.orders.length}}" aria-valuemin="0" aria-valuemax="{{offer.maxOrders}}" style="width: {{offer.orders.length*10}}%">
+                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{offer.currentOrders}}" aria-valuemin="0" aria-valuemax="{{offer.maxOrders}}" style="width: {{offer.currentOrders*10}}%">
                     <span class="sr-only"></span>
                   </div>
-<!--                   <div class="progress-bar progress-bar-warning" style="width: 20%">
+                  <!--                   <div class="progress-bar progress-bar-warning" style="width: 20%">
                     <span class="sr-only"></span>
                   </div> -->
                 </div>
                 <ul class="list-inline">
                   <li>
                     <dl>
-                      <dt>{{offer.orders.length}} st</dt>
+                      <dt>{{offer.currentOrders}} st</dt>
                       <dd>beställda</dd>
                     </dl>
                   </li>
                   <li>
                     <dl>
-                      <dt>{{offer.maxOrders}} st</dt>
-                      <dd>maximalt</dd>
+                      <dt>{{offer.minOrders}} st</dt>
+                      <dd>minst</dd>
                     </dl>
                   </li>
                   <li>
                     <dl>
-                      <dt>3</dt>
-                      <dd>dagar kvar att beställa</dd>
+                      <dt>{{offer.maxOrders}} st</dt>
+                      <dd>högst</dd>
                     </dl>
                   </li>
                 </ul>

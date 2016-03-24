@@ -10,7 +10,7 @@ angular.module('wecookApp')
       var totalSum = 0;
 
       for (var i = 0; i < $scope.orders.length; i++) {
-        totalSum += $scope.orders[i].price;
+        totalSum += $scope.orders[i].adultPrice;
       }
 
       return totalSum;

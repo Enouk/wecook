@@ -48,23 +48,40 @@
             <div class="container">
               <div class="row">
                 <div class="page-header none-border-bottom">
-                  <h3>Din meny <span><button type="submit" class="btn btn-success" ng-click="addNewDay()">Lägg till dag</button></span></h3>
+                  <h3>Din meny <span><button type="submit" class="btn btn-success" ng-click="createOffer()">Lägg till dag</button></span></h3>
                   <!-- Day -->
-                  <div class="panel panel-default border-none box-shadow-none background-edit" ng-show="newDay!=undefined">
+                  <div class="panel panel-default border-none box-shadow-none background-edit" ng-show="newOffer!=undefined">
                     <div class="panel-body">
+                      <div class="alert alert-danger" ng-show="error!=null">{{error}}</div>
                       <form class="form">
                         <div class="form-group">
-                          <select class="form-control" ng-options="day.name for day in DAYS track by day.id" ng-model="newday.date">
-                            <option value="" selected hidden>Välj dag</option>                            
-                          </select>
-                        </div>
-                        <div class="form-group">
-                          <select class="form-control" name="mySelect" id="mySelect" ng-options="product.name for product in products track by product.id" ng-model="newday.product">
+                          <label class="pull-left" for="inputProduct">Produkt</label>
+                          <select class="form-control" name="mySelect" id="inputProduct" ng-options="product.name for product in products track by product.id" ng-model="newOffer.product">
                             <option value="" selected hidden>Välj rätt</option>
                           </select>
                         </div>
-                        <button type="submit" class="btn btn-default" ng-click="cancelNewDay()">Cancel</button>
-                        <button type="submit" class="btn btn-success" ng-click="saveNewDay(newday)">Spara dag</button>
+                        <div class="form-group">
+                          <label class="pull-left" for="inputPrice">Pris</label>
+                          <input type="text" id="inputPrice" class="form-control" ng-model="newOffer.adultPrice" placeholder="Ange pris">
+                        </div>
+                        <div class="form-group">
+                          <label class="pull-left" for="inputDeliveryDate">Leveransdag</label>
+                          <input type="text" id="inputDeliveryDate" class="form-control" ng-model="newOffer.deliveryDate" placeholder="Ange leveransdag">
+                        </div>
+                        <div class="form-group">
+                          <label class="pull-left" for="inputLastOrderDate">Sista beställningsdag</label>
+                          <input type="text" id="inputLastOrderDate" class="form-control" ng-model="newOffer.lastOrderDate" placeholder="Ange sista beställningsdag">
+                        </div>
+                        <div class="form-group">
+                          <label class="pull-left" for="inputMinOrders">Minst antal beställningar</label>
+                          <input type="text" id="inputMinOrders" class="form-control" ng-model="newOffer.minOrders" placeholder="Ange minst antal beställningar">
+                        </div>
+                        <div class="form-group">
+                          <label class="pull-left" for="inputMaxOrders">Max antal beställningar</label>
+                          <input type="text" class="form-control" ng-model="newOffer.maxOrders" placeholder="Ange max antal beställningar">
+                        </div>
+                        <button type="submit" class="btn btn-default" ng-click="cancelOffer()">Cancel</button>
+                        <button type="submit" class="btn btn-success" ng-click="saveOffer(newOffer)">Spara dag</button>
                       </form>
                     </div>
                   </div>
@@ -72,18 +89,16 @@
               </div>
             </div>
             <div class="row">
-<!--               <h2>Vecka {{menu.week}}</h2>
-              <nav>
-                <ul class="pager">
-                  <li ng-click="previousWeek()"><a>Föregående</a></li>
-                  <li ng-click="nextWeek()"><a>Nästa</a></li>
-                </ul>
-              </nav> -->
-              <div ng-repeat="d in menu.days track by $index">
-                <h3>{{d.name}} <a class="btn btn-default" role="button">Tabort</a></h3>
+              <div ng-repeat="d in menu track by $index">
+                <h3>{{d.deliveryDate}}</h3>
+                <h5>{{d.lastOrderDate}}</h5>
                 <p>{{d.product.name}}</p>
-                <h4>{{d.product.price}} kr</h4>
-                <h4>{{d.info.maxPortions}}</h4>
+                <p>{{d.product.description}}</p>
+                <p>{{d.product.ingredients}}</p>
+                <h4>{{d.adultPrice}} kr</h4>
+                <h4><small>Min</small> {{d.minOrders}}</h4>
+                <h4><small>Max</small> {{d.maxOrders}}</h4>
+                <a class="btn btn-default" role="button" ng-click="removeOffer(d)">Tabort</a>
               </div>
             </div>
           </div>
@@ -92,32 +107,30 @@
             <div class="container">
               <div class="row">
                 <div class="page-header none-border-bottom">
-                  <h3>Dina rätter  <span><button type="submit" class="btn btn-success" ng-click="addNewProduct()">Lägg till rätt</button></span></h3>
+                  <h3>Dina rätter  <span><button type="submit" class="btn btn-success" ng-click="createProduct()">Lägg till</button></span></h3>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="panel panel-default border-none box-shadow-none background-edit" ng-show="newProduct!==undefined">
                 <div class="panel-body">
+                  <div class="alert alert-danger" ng-show="error!=null">{{error}}</div>
                   <!-- Produkt -->
                   <form class="form">
                     <div class="form-group">
-                      <input type="text" class="form-control" ng-model="newproduct.name" placeholder="Rättens namn">
+                      <label class="pull-left" for="inputNewProductName">Namn</label>
+                      <input type="text" id="inputNewProductName" class="form-control" ng-model="newproduct.name" placeholder="Rättens namn">
                     </div>
                     <div class="form-group">
+                      <label class="pull-left" for="inputNewProductDescription">Beskrivning</label>
                       <input type="text" class="form-control" ng-model="newproduct.description" placeholder="Kort beskrivning">
                     </div>
                     <div class="form-group">
+                      <label class="pull-left" for="inputNewProductIngredients">Ingredients</label>
                       <input type="text" class="form-control" ng-model="newproduct.ingredients" placeholder="Ingredienser i rätten">
                     </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control" ng-model="newproduct.strong" placeholder="Styrka">
-                    </div>
-                    <div class="form-group">
-                      <input type="number" class="form-control" ng-model="newproduct.price" placeholder="Pris">
-                    </div>
                     <button type="submit" class="btn btn-default" ng-click="cancelProduct()">Cancel</button>
-                    <button type="submit" class="btn btn-success" ng-click="saveProduct(newproduct)">Spara rätt</button>
+                    <button type="submit" class="btn btn-success" ng-click="saveProduct(newproduct)">Spara</button>
                   </form>
                 </div>
               </div>
@@ -128,8 +141,9 @@
                       <dl>
                         <dt>{{p.name}}</dt>
                         <dd>{{p.description}}</dd>
-                        <dd>{{p.price}} kr</dd>
+                        <dd>{{p.ingredients}}</dd>
                       </dl>
+                      <a class="btn btn-default" role="button" ng-click="removeProduct(p)">Tabort</a>
                     </td>
                   </tr>
                 </table>

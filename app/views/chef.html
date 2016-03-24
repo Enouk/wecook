@@ -45,11 +45,13 @@
                   <li ng-click="nextWeek()"><a>Nästa</a></li>
                 </ul>
               </nav> -->
-              <div ng-repeat="d in menu.days track by $index">
-                <h3>{{d.name}}</h3>
+              <div ng-repeat="d in menu track by $index">
+                <h3>{{d.deliveryDate}}</h3>
                 <p>{{d.product.name}}</p>
-                <h4>{{d.product.price}} kr</h4>
-                <h4>{{d.info.maxPortions}}</h4>
+                <p>{{d.product.description}}</p>
+                <p>{{d.product.ingredients}}</p>
+                <h4>{{d.adultPrice}} kr</h4>
+                <h4>{{d.maxPortions}}</h4>
                 <a class="btn btn-default" role="button">Reservera</a>
               </div>
             </div>
@@ -71,7 +73,7 @@
                       <dl>
                         <dt>{{p.name}}</dt>
                         <dd>{{p.description}}</dd>
-                        <dd>{{p.price}} kr</dd>
+                        <dd>{{p.ingredients}}</dd>
                       </dl>
                     </td>
                   </tr>
