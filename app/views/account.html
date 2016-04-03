@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="row marketing text-center">
-            <h1>{{user.firstName}}, Här är ditt konto</h1>
+            <h1>{{profile.firstname}}, Här är ditt konto</h1>
             <p>Nedan hittar du all information om ditt konto</p>
           </div>
         </div>
@@ -21,13 +21,13 @@
         <div class="col-md-9">
           <form>
             <div class="form-group">
-              <input type="text" class="form-control" ng-model="user.firstName" placeholder="Förnamn">
+              <input type="text" class="form-control" ng-model="profile.firstname" placeholder="Förnamn">
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" ng-model="user.lastName" placeholder="Efternamn">
+              <input type="text" class="form-control" ng-model="profile.lastname" placeholder="Efternamn">
             </div>
             <div class="form-group">
-              <input type="email" class="form-control" ng-model="user.email" placeholder="Email">
+              <input type="text" class="form-control" ng-model="profile.phone" placeholder="Telefon">
             </div>
           </form>
         </div>

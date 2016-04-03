@@ -42,7 +42,7 @@ angular.module('wecookApp')
     $scope.init();
 
     $scope.order = function(offer) {
-      Client.addOrder(offer);
+      Client.addCartOrder(offer);
     };
 
   });

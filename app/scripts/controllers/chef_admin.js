@@ -2,7 +2,8 @@
 
 
 angular.module('wecookApp')
-  .controller('ChefAdminCtrl', function($scope, $routeParams, Client, ChefService, OfferService, ProductService) {
+  .controller('ChefAdminCtrl', function($scope, $routeParams,
+    Client, ProfileService, ChefService, OfferService, ProductService) {
 
     $scope.TABS = {
       MENU: 0,
@@ -14,35 +15,12 @@ angular.module('wecookApp')
       ADMIN: 1
     };
 
-    $scope.DAYS = [{
-      id: 0,
-      name: 'Måndag',
-    }, {
-      id: 1,
-      name: 'Tisdag',
-    }, {
-      id: 2,
-      name: 'Onsdag',
-    }, {
-      id: 3,
-      name: 'Torsdag',
-    }, {
-      id: 5,
-      name: 'Fredag',
-    }, {
-      id: 6,
-      name: 'Lördag',
-    }, {
-      id: 7,
-      name: 'Söndag',
-    }]
-
     $scope.type = $scope.TYPE.ADMIN;
     $scope.tab = $scope.TABS.MENU;
-
-    var id = '0';
+    $scope.menu = [];
 
     $scope.chef = Client.getUserChef();
+    $scope.profile = Client.getUserProfile();
 
     OfferService.getChefOffers($scope.chef.id)
       .success(function(offers) {
@@ -64,22 +42,48 @@ angular.module('wecookApp')
         $scope.error = 'Kunde ej hämta produkterna';
       });
 
-    $scope.editProfile = function() {
+    $scope.beginEditProfile = function() {
       $scope.chef.$edit = true;
-      $scope.chef.$firstname = $scope.chef.firstname;
-      $scope.chef.$lastname = $scope.chef.lastname;
+      $scope.chef.$firstname = $scope.profile.firstname;
+      $scope.chef.$lastname = $scope.profile.lastname;
       $scope.chef.$bio = $scope.chef.bio;
     };
 
-    $scope.cancelProfile = function() {
-      $scope.chef.$edit = false;
+    $scope.cancelEditProfile = function() {
+      $scope.chef.$edit = undefined;
     };
 
-    $scope.saveProfile = function() {
-      $scope.chef.$edit = false;
-      $scope.chef.firstname = $scope.chef.$firstname;
-      $scope.chef.lastname = $scope.chef.$lastname;
+    $scope.commitEditProfile = function() {
+      $scope.chef.$edit = undefined;
+      $scope.profile.firstname = $scope.chef.$firstname;
+      $scope.profile.lastname = $scope.chef.$lastname;
       $scope.chef.bio = $scope.chef.$bio;
+
+      $scope.updateProfile($scope.profile);
+    };
+
+    $scope.updateProfile = function(profile) {
+
+      ProfileService.updateProfile(profile.id, profile.firstname, profile.lastname)
+        .success(function(updatedProfile) {
+          Client.setUserProfile(updatedProfile);
+        })
+        .error(function() {
+          $scope.info = undefined;
+          $scope.error = 'Kunde ej updatera profil';
+        });
+    };
+
+    $scope.updateChef = function(chef) {
+
+      ChefService.updateChef(chef.id, chef.bio)
+        .success(function(updatedChef) {
+          Client.setUserChef(updatedChef);
+        })
+        .error(function() {
+          $scope.info = undefined;
+          $scope.error = 'Kunde ej updatera kock';
+        });
     };
 
     $scope.createProduct = function() {
@@ -90,7 +94,27 @@ angular.module('wecookApp')
       $scope.newProduct = undefined;
     };
 
-    $scope.saveProduct = function(product) {
+    $scope.beginEditProduct = function(product) {
+      product.$edit = true;
+      product.$name = product.name;
+      product.$description = product.description;
+      product.$ingredients = product.ingredients;
+    };
+
+    $scope.commitEditProduct = function(product) {
+      product.$edit = undefined;
+      product.name = product.$name;
+      product.description = product.$description;
+      product.ingredients = product.$ingredients;
+
+      return $scope.updateProduct(product);
+    };
+
+    $scope.cancelEditProduct = function(product) {
+      product.$edit = undefined;
+    };
+
+    $scope.addProduct = function(product) {
 
       ProductService.addProduct(product)
         .success(function(createdProduct) {
@@ -104,6 +128,19 @@ angular.module('wecookApp')
         });
     };
 
+    $scope.updateProduct = function(product) {
+
+      ProductService.updateProduct(product.id, product.name, product.description, product.ingredients)
+        .success(function(updatedProduct) {
+
+          product = updatedProduct;
+        })
+        .error(function() {
+          $scope.info = undefined;
+          $scope.error = 'Kunde ej updatera produkt';
+        });
+    };
+
     $scope.removeProduct = function(product) {
       ProductService.removeProduct(product)
         .success(function() {
@@ -112,9 +149,13 @@ angular.module('wecookApp')
           $scope.products.splice(index, 1);
 
         })
-        .error(function() {
+        .error(function(data) {
           $scope.info = undefined;
-          $scope.error = 'Kunde ej tabort produkt';
+          if (data.error == 'offer_exist_for_product') {
+            $scope.error = 'Kan ej abort en rätt som ingår i en meny';
+          } else {
+            $scope.error = 'Kunde ej tabort';
+          }
         });
     };
 
@@ -158,6 +199,7 @@ angular.module('wecookApp')
           var index = $scope.menu.indexOf(offer);
           $scope.menu.splice(index, 1);
 
+          $scope.error = undefined;
         })
         .error(function() {
           $scope.info = undefined;

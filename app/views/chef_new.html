@@ -31,7 +31,7 @@
                 <div class="col-md-6 col-md-offset-3">
                   <div class="panel-default">
                     <div class="panel-body">
-                    <div class="alert alert-danger" ng-show="error!=null">{{error}}</div>
+                      <div class="alert alert-danger" ng-show="error!=null">{{error}}</div>
                       <form name="userForm" role="form" ng-submit="userForm.$valid && register()" novalidate>
                         <fieldset>
                           <div class="form-group" ng-class="{ 'has-error' : userForm.firstname.$invalid && submitted }">

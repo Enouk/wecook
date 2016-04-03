@@ -18,15 +18,24 @@ angular
     'ngTouch',
     'facebook'
   ])
-  .config(function ($routeProvider, FacebookProvider) {
-      // Set your appId through the setAppId method or
-     // use the shortcut in the initialize method directly.
-     FacebookProvider.init('966757563410792');
+  .config(function($routeProvider, FacebookProvider) {
+    // Set your appId through the setAppId method or
+    // use the shortcut in the initialize method directly.
+    FacebookProvider.init('966757563410792');
 
     $routeProvider
+    // Public routes
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
+      })
+      .when('/register', {
+        templateUrl: 'views/register.html',
+        controller: 'RegisterCtrl'
+      })
+      .when('/signin', {
+        templateUrl: 'views/signin.html',
+        controller: 'SigninCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -40,21 +49,9 @@ angular
         templateUrl: 'views/chef_new.html',
         controller: 'ChefNewCtrl'
       })
-      .when('/signin', {
-        templateUrl: 'views/signin.html',
-        controller: 'SigninCtrl'
-      })
       .when('/home', {
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl'
-      })
-      .when('/account', {
-        templateUrl: 'views/account.html',
-        controller: 'AccountCtrl'
-      })
-      .when('/orders', {
-        templateUrl: 'views/orders.html',
-        controller: 'OrdersCtrl'
       })
       .when('/product/:id', {
         templateUrl: 'views/product.html',
@@ -72,15 +69,40 @@ angular
         templateUrl: 'views/chefs.html',
         controller: 'ChefsCtrl'
       })
+      // Private routes
       .when('/chef_admin', {
         templateUrl: 'views/chef_admin.html',
-        controller: 'ChefAdminCtrl'
+        controller: 'ChefAdminCtrl',
+        data: {
+          access: 'private'
+        }
       })
-      .when('/register', {
-        templateUrl: 'views/register.html',
-        controller: 'RegisterCtrl'
+      .when('/account', {
+        templateUrl: 'views/account.html',
+        controller: 'AccountCtrl',
+        data: {
+          access: 'private'
+        }
+      })
+      .when('/orders', {
+        templateUrl: 'views/orders.html',
+        controller: 'OrdersCtrl',
+        data: {
+          access: 'private'
+        }
+      })
+      .when('/cart', {
+        templateUrl: 'views/cart.html',
+        controller: 'CartCtrl',
+        data: {
+          access: 'private'
+        }
       })
       .otherwise({
         redirectTo: '/'
       });
   });
+
+angular.module('wecookApp').config(function($httpProvider) {
+  $httpProvider.interceptors.push('AuthInterceptor');
+});

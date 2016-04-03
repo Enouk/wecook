@@ -5,14 +5,23 @@
       <!-- No order -->
       <div class="container">
         <div class="row">
+          <div class="col-md-12">
+            <div class="row marketing text-center">
+              <h1>{{ calculateSum() }} kr</h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <button type="button" class="btn btn-success" ng-click="placeOrders()">Betala</button>
+        </div>
+        <div class="row">
           <div class="page-header none-border-bottom">
-            <h3>{{orders.length}} beställningar</h3>
+            <h3>{{cartOrders.length}} beställningar</h3>
             <dl>
-              <div ng-repeat="o in orders track by $index">
-                <dt>{{o.offer.deliveryDate}}</dt>
+              <div ng-repeat="o in cartOrders track by $index">
                 <dt>{{o.product.name}} <small>av {{o.chef.firstname}}</small></dt>
                 <dd>{{o.product.description}}</dd>
-                <dt>{{o.price}} kr</dt>
+                <dt>{{o.adultPrice}} kr</dt>
               </div>
             </dl>
           </div>

@@ -38,21 +38,43 @@
               </div>
             </div>
             <div class="row">
-<!--               <h2>Vecka {{menu.week}}</h2>
-              <nav>
-                <ul class="pager">
-                  <li ng-click="previousWeek()"><a>Föregående</a></li>
-                  <li ng-click="nextWeek()"><a>Nästa</a></li>
-                </ul>
-              </nav> -->
-              <div ng-repeat="d in menu track by $index">
-                <h3>{{d.deliveryDate}}</h3>
-                <p>{{d.product.name}}</p>
-                <p>{{d.product.description}}</p>
-                <p>{{d.product.ingredients}}</p>
-                <h4>{{d.adultPrice}} kr</h4>
-                <h4>{{d.maxPortions}}</h4>
-                <a class="btn btn-default" role="button">Reservera</a>
+              <div ng-repeat="offer in menu" class="col-md-12">
+                <div class="thumbnail">
+                  <img ng-src="{{offer.chef.thumbnail}}">
+                  <div class="caption">
+                    <h3>{{offer.deliveryDate}}</h3>
+                    <h4>{{offer.product.name}} <span class="pull-right">{{offer.adultPrice}} kr</span></h4>
+                    <p>{{offer.product.description}}</p>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{offer.currentOrders}}" aria-valuemin="0" aria-valuemax="{{offer.maxOrders}}" style="width: {{offer.currentOrders*10}}%">
+                        <span class="sr-only"></span>
+                      </div>
+                    </div>
+                    <ul class="list-inline">
+                      <li>
+                        <dl>
+                          <dt>{{offer.currentOrders}} st</dt>
+                          <dd>beställda</dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <dl>
+                          <dt>{{offer.minOrders}} st</dt>
+                          <dd>minst</dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <dl>
+                          <dt>{{offer.maxOrders}} st</dt>
+                          <dd>högst</dd>
+                        </dl>
+                      </li>
+                    </ul>
+                    <div class="btn-group" role="group">
+                      <button type="button" class="btn btn-default" ng-click="order(offer)">Lägg till portion</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

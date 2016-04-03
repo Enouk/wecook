@@ -2,7 +2,7 @@
 
 
 angular.module('wecookApp')
-  .controller('SigninCtrl', function($scope, $location, Facebook, AuthService, Client, ChefService) {
+  .controller('SigninCtrl', function($scope, $location, $routeParams, Facebook, AuthService, Client, ChefService) {
 
     $scope.facebookLogin = function() {
       Facebook.login(function(response) {
@@ -40,21 +40,24 @@ angular.module('wecookApp')
     $scope.signin = function() {
 
       AuthService.login($scope.username, $scope.password)
-        .success(function(result) {
+        .success(function(data) {
 
           $scope.error = null;
 
-          Client.setUser(result.user);
-          Client.setSessionId(result.sessionId);
+          Client.setUser(data.user);
+          Client.setSessionId(data.sessionId);
+          Client.setUserProfile(data.profile);
+          Client.setUserChef(data.chef);
+          Client.setUserGuest(data.guest);
 
-          ChefService.getChef(result.user.id)
-            .success(function(chef) {
-              Client.setUserChef(chef)
-              $location.path('/home');
-            })
-            .error(function() {
-              // Ingen kock
-            });
+          if ($routeParams.redirect !== undefined) {
+            // Clear the redirect param
+            $location.search('redirect', undefined);
+            // Redirect to the path
+            $location.path($routeParams.redirect);
+          } else {
+            $location.path('/home');
+          }
 
         })
         .error(function(data) {
@@ -69,5 +72,35 @@ angular.module('wecookApp')
           }
         });
     };
+
+    $scope.autologin = function() {
+
+      AuthService.currentSession()
+        .success(function(data) {
+
+          $scope.error = null;
+
+          Client.setUser(data.user);
+          Client.setSessionId(data.sessionId);
+          Client.setUserProfile(data.profile);
+          Client.setUserChef(data.chef);
+          Client.setUserGuest(data.guest);
+
+          if ($routeParams.redirect !== undefined) {
+            // Clear the redirect param
+            $location.search('redirect', undefined);
+            // Redirect to the path
+            $location.path($routeParams.redirect);
+          } else {
+            $location.path('/home');
+          }
+        })
+        .error(function() {
+          // No session exist's
+        });
+    };
+
+    // Try to do a autologin
+    $scope.autologin();
 
   });

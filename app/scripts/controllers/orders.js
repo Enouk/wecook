@@ -1,19 +1,17 @@
 'use strict';
 
 angular.module('wecookApp')
-  .controller('OrdersCtrl', function($scope, Client) {
+  .controller('OrdersCtrl', function($scope, $location, Client, OrderService) {
 
-  	$scope.orders = Client.getOrders();
+    $scope.guest = Client.getUserGuest();
 
-    $scope.calculateSum = function() {
-
-      var totalSum = 0;
-
-      for (var i = 0; i < $scope.orders.length; i++) {
-        totalSum += $scope.orders[i].adultPrice;
-      }
-
-      return totalSum;
-    };
+    OrderService.getGuestOrders($scope.guest.id)
+      .success(function(orders) {
+        $scope.orders = orders;
+      })
+      .error(function() {
+        $scope.info = undefined;
+        $scope.error = 'Kunde ej hämta beställningar';
+      });
 
   });

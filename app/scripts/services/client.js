@@ -4,15 +4,24 @@ angular.module('wecookApp')
   .service('Client', function() {
 
     var _user;
+    var _profile;
     var _chef;
     var _guest;
     var _sessionId;
     var _orders = [];
+    var _cartOrders = [];
 
     var _products;
     var _offers;
     var _chefs;
 
+    this.isLoggedIn = function() {
+      if (_user !== undefined) {
+        return true;
+      }
+      return false;
+    };
+    
     this.getUser = function() {
       return _user;
     };
@@ -21,28 +30,36 @@ angular.module('wecookApp')
       _user = user;
     };
 
+    this.getUserProfile = function() {
+      return _profile;
+    };
+
+    this.setUserProfile = function(profile) {
+      _profile = profile;
+    };
+
+    this.getUserChef = function() {
+      return _chef;
+    };
+
+    this.setUserChef = function(chef) {
+      _chef = chef;
+    };
+
+    this.getUserGuest = function() {
+      return _guest;
+    };
+
+    this.setUserGuest = function(guest) {
+      _guest = guest;
+    };
+
     this.getSessionId = function() {
       return _sessionId;
     };
 
     this.setSessionId = function(SessionId) {
       _sessionId = SessionId;
-    };
-
-    this.getUserChef = function() {
-      return _user.chef;
-    };
-
-    this.setUserChef = function(chef) {
-      _user.chef = chef;
-    };
-
-    this.getUserGuest = function() {
-      return _user.guest;
-    };
-
-    this.setUserGuest = function(guest) {
-      _user.guest = guest;
     };
 
     this.getProduct = function(id) {
@@ -72,13 +89,21 @@ angular.module('wecookApp')
       return _orders;
     };
 
-    this.addOrder = function(offer) {
-      _orders.push(offer);
+    this.getCartOrders = function() {
+      return _cartOrders;
+    }; 
+
+    this.clearCartOrders = function() {
+      _cartOrders.length = 0;
     };
 
-    this.removeOrder = function(offer) {
-      var index = _orders.indexOf(offer);
-      _orders.splice(index, 1);
+    this.addCartOrder = function(offer) {
+      _cartOrders.push(offer);
+    };
+
+    this.removeCartOrder = function(offer) {
+      var index = _cartOrders.indexOf(offer);
+      _cartOrders.splice(index, 1);
     };
 
     this.setChefs = function(chefs) {

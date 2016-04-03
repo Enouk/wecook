@@ -20,4 +20,40 @@ angular.module('wecookApp')
       return $http.delete('/api/wecook/product/' + product.id);
     };
 
+    this.updateProduct = function(id, name, description, ingredients) {
+
+      var operations = [];
+
+      if (name !== undefined) {
+        operations.push(this.createPatchOp('name', name));
+      }
+
+      if (description !== undefined) {
+        operations.push(this.createPatchOp('description', description));
+      }
+
+      if (ingredients !== undefined) {
+        operations.push(this.createPatchOp('ingredients', ingredients));
+      }
+
+      var options = {
+        headers: {
+          'Content-Type': 'application/json-patch'
+        }
+      };
+
+      return $http.put('/api/wecook/product/' + id, operations, options);
+    };
+
+    // TODO move to util class
+    this.createPatchOp = function(name, value) {
+      var replace = {
+        op: 'replace',
+        path: name,
+        value: value
+      };
+
+      return replace;
+    };
+
   });

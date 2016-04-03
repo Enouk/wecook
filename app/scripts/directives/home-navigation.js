@@ -1,18 +1,27 @@
 'use strict';
 
 angular.module('wecookApp')
-  .controller('homeNavigationCtrl', function($scope, $location, Client) {
+  .controller('homeNavigationCtrl', function($scope, $location, Client, AuthService) {
+
+    $scope.orders = Client.getOrders();
+    $scope.cartOrders = Client.getCartOrders();
+    $scope.profile = Client.getUserProfile();
 
     $scope.contains = function(viewLocation) {
       return $location.path().indexOf(viewLocation) !== -1;
     };
 
-    $scope.orders = Client.getOrders();
+    $scope.logout = function() {
+
+      AuthService.logout(Client.getSessionId())
+        .success(function() {})
+        .error(function() {});
+    };
 
   });
 
 angular.module('wecookApp')
-  .directive('homeNavigation', function () {
+  .directive('homeNavigation', function() {
     return {
       controller: 'homeNavigationCtrl',
       templateUrl: 'views/home-navigation.html',

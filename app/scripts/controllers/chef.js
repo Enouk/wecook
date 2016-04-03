@@ -80,20 +80,8 @@ angular.module('wecookApp')
       $scope.newProduct = undefined;
     };
 
-    $scope.addNewDay = function() {
-      $scope.newDay = {};
-    };
-
-    $scope.cancelNewDay = function() {
-      $scope.newDay = undefined;
-    };
-
-    $scope.saveNewDay = function(day) {
-      $scope.newDay = undefined;
-    };
-
-    $scope.order = function(product) {
-      Client.addOrder(product);
+    $scope.order = function(offer) {
+      Client.addCartOrder(offer);
     };
 
   });

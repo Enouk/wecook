@@ -8,34 +8,34 @@ angular.module('wecookApp')
         'username': Username,
         'password': Pass
       };
-      return $http.post('/api/auth/login', data);
+      return $http.post('/api/wecook/auth/login', data);
     };
 
     this.currentSession = function() {
       var data = {};
-      return $http.post('/api/auth/current_session', data);
+      return $http.post('/api/wecook/auth/current_session', data);
     };
 
     this.logout = function(SessionId) {
-      return $http.post('/api/auth/logout', SessionId);
+      return $http.post('/api/wecook/auth/logout', SessionId);
     };
 
     this.createToken = function(ProviderId) {
-      return $http.get('/api/auth/token/' + ProviderId);
+      return $http.get('/api/wecook/auth/token/' + ProviderId);
     };
 
     this.forgotPassword = function(Email) {
       var data = {
         'email': Email
       };
-      return $http.post('/api/auth/forgot_password', data);
+      return $http.post('/api/wecook/auth/forgot_password', data);
     };
 
     this.updatePassword = function(Pass) {
       var data = {
         'password': Pass
       };
-      return $http.post('/api/auth/change_password', data);
+      return $http.post('/api/wecook/auth/change_password', data);
     };
 
     this.changePassword = function(Pass, Token) {
@@ -43,7 +43,7 @@ angular.module('wecookApp')
         'password': Pass,
         'token': Token
       };
-      return $http.post('/api/auth/change_password', data);
+      return $http.post('/api/wecook/auth/change_password', data);
     };
 
   });
