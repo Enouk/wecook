@@ -6,6 +6,8 @@ angular.module('wecookApp')
     $scope.orders = Client.getOrders();
     $scope.cartOrders = Client.getCartOrders();
     $scope.profile = Client.getUserProfile();
+    $scope.isChef = Client.isChefUser();
+    $scope.isGuest = Client.isGuestUser();
 
     $scope.contains = function(viewLocation) {
       return $location.path().indexOf(viewLocation) !== -1;
@@ -14,8 +16,12 @@ angular.module('wecookApp')
     $scope.logout = function() {
 
       AuthService.logout(Client.getSessionId())
-        .success(function() {})
-        .error(function() {});
+        .success(function() {
+          $location.path('/');
+        })
+        .error(function() {
+          $location.path('/');
+        });
     };
 
   });

@@ -21,7 +21,7 @@ angular.module('wecookApp')
       }
       return false;
     };
-    
+
     this.getUser = function() {
       return _user;
     };
@@ -46,8 +46,16 @@ angular.module('wecookApp')
       _chef = chef;
     };
 
+    this.isChefUser = function() {
+      return _chef !== undefined;
+    };
+
     this.getUserGuest = function() {
       return _guest;
+    };
+
+    this.isGuestUser = function() {
+      return _guest !== undefined;
     };
 
     this.setUserGuest = function(guest) {
@@ -91,7 +99,7 @@ angular.module('wecookApp')
 
     this.getCartOrders = function() {
       return _cartOrders;
-    }; 
+    };
 
     this.clearCartOrders = function() {
       _cartOrders.length = 0;

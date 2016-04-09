@@ -3,26 +3,49 @@
   <div class="container">
     <div class="jumbotron jumbo none-border-bottom">
       <!-- No order -->
-      <div class="container">
+      <div class="container" ng-show="cartOrders.length === 0">
+        <div class="col-md-12">
+          <div class="row marketing text-center">
+            <h1>Inga beställningar gjorda</h1>
+            <p>Gå till <a href="#/home">Meny</a> för att beställa</p>
+          </div>
+        </div>
+      </div>
+      <div class="container" ng-show="cartOrders.length > 0">
         <div class="row">
           <div class="col-md-12">
             <div class="row marketing text-center">
+              <h3>Varukorg</h3>
               <h1>{{ calculateSum() }} kr</h1>
             </div>
           </div>
         </div>
         <div class="row">
-          <button type="button" class="btn btn-success" ng-click="placeOrders()">Betala</button>
+          <button type="button" class="btn btn-success" ng-click="placeOrders()">Gå till betalning</button>
         </div>
         <div class="row">
           <div class="page-header none-border-bottom">
-            <h3>{{cartOrders.length}} beställningar</h3>
+            <h3>{{cartOrders.length}} rätter valda</h3>
             <dl>
-              <div ng-repeat="o in cartOrders track by $index">
-                <dt>{{o.product.name}} <small>av {{o.chef.firstname}}</small></dt>
-                <dd>{{o.product.description}}</dd>
-                <dt>{{o.adultPrice}} kr</dt>
-              </div>
+              <table class="table table-hover">
+                <tr ng-repeat="o in cartOrders track by $index">
+                  <td>
+                    <dl>
+                      <dt>{{o.product.name}} <small>av {{o.chef.firstname}}</small></dt>
+                      <dd>{{o.product.description}}</dd>
+                      <dt>{{o.adultPrice}} kr</dt>
+                    </dl>
+                    <div class="btn-group" role="group" ng-show="o.$delete==undefined">
+                      <a class="btn btn-default" role="button" ng-click="o.$delete=true">Tabort</a>
+                    </div>
+                    <div class="btn-group" role="group" ng-show="o.$delete==true">
+                      <h5>Är du säker på att tabort {{o.product.name}}?</h5>
+                      <button type="button" class="btn btn-default" ng-click="removeOrder(o)">Japp</button>
+                      <button type="button" class="btn btn-default" ng-click="o.$delete=undefined">Avbryt</button>
+                    </div>
+                  </td>
+                </tr>
+              </table>
             </dl>
           </div>
         </div>

@@ -4,7 +4,6 @@ angular.module('wecookApp')
   .service('ChefService', function($http) {
 
     this.register = function(chef) {
-
       return $http.post('/api/wecook/chef', chef);
     };
 

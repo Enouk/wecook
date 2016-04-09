@@ -1,13 +1,6 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name wecookApp
- * @description
- * # wecookApp
- *
- * Main module of the application.
- */
+
 angular
   .module('wecookApp', [
     'ngAnimate',
@@ -94,6 +87,13 @@ angular
       .when('/cart', {
         templateUrl: 'views/cart.html',
         controller: 'CartCtrl',
+        data: {
+          access: 'private'
+        }
+      })
+      .when('/cart_payment', {
+        templateUrl: 'views/cart_payment.html',
+        controller: 'CartPaymentCtrl',
         data: {
           access: 'private'
         }

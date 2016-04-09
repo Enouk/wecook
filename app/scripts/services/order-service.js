@@ -16,4 +16,8 @@ angular.module('wecookApp')
       return $http.post('/api/wecook/order/', orders);
     };
 
+    this.deleteOrder = function(order) {
+      return $http.delete('/api/wecook/order/' + order.id);
+    };    
+
   });

@@ -9,20 +9,24 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#/">Te<span class="red">j</span>st</a>
+      <a class="navbar-brand pull-right" ng-show="isGuest==true" href="#/cart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <span class="label label-pill label-info">{{cartOrders.length}}</span></a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li ng-class="{active: contains('home') }"><a href="#/home">Meny</a></li>
-        <li ng-class="{active: contains('cart') }"><a href="#/cart">Beställning <span class="badge">{{cartOrders.length}}</span></a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{profile.firstname}} <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li ng-class="{active: contains('orders') }"><a href="#/orders">Min Meny</a></li>
-            <li ng-class="{active: contains('admin') }"><a href="#/chef_admin">Mitt Kök</a></li>
-            <li ng-class="{active: contains('account') }"><a href="#/account">Mitt Konto</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#/" ng-click="logout()">Logout</a></li>
+            <!-- Guest-->
+            <li ng-class="{active: contains('orders') }" ng-show="isGuest==true"><a href="#/orders">Min Meny</a></li>
+            <li ng-class="{active: contains('account') }" ng-show="isGuest==true"><a href="#/account">Mitt Konto</a></li>
+            <li role="separator" ng-show="isGuest==true" class="divider"></li>
+            <!-- Chef -->
+            <li ng-class="{active: contains('admin') }" ng-show="isChef==true"><a href="#/chef_admin">Mitt Kök</a></li>
+            <li role="separator" ng-show="isChef==true" class="divider"></li>
+            <!-- Logout-->
+            <li><a ng-click="logout()">Logout</a></li>
           </ul>
         </li>
       </ul>

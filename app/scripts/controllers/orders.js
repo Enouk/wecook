@@ -14,4 +14,17 @@ angular.module('wecookApp')
         $scope.error = 'Kunde ej hämta beställningar';
       });
 
+    $scope.removeOrder = function(order) {
+
+      OrderService.deleteOrder(order)
+        .success(function() {
+          var index = $scope.orders.indexOf(order);
+          $scope.orders.splice(index, 1);
+        })
+        .error(function() {
+          $scope.info = undefined;
+          $scope.error = 'Kunde ej tabort beställningen';
+        });
+    }
+
   });

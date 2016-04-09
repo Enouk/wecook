@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wecookApp')
-  .controller('ChefNewCtrl', function($scope, Facebook, ChefService, AuthService, Client) {
+  .controller('ChefNewCtrl', function($scope, $location, Facebook, ChefService, AuthService, Client) {
 
     $scope.facebookLogin = function() {
       Facebook.login(function(response) {
@@ -49,22 +49,16 @@ angular.module('wecookApp')
           $scope.error = undefined;
 
           // After the register login the user
-          AuthService.login($scope.user.username, $scope.username.password)
-            .success(function(result) {
+          AuthService.login($scope.user.username, $scope.user.password)
+            .success(function(data) {
 
               $scope.error = null;
 
-              Client.setUser(result.user);
-              // Client.setAccounts(result.accounts);
-              Client.setSessionId(result.sessionId);
-
-              ChefService.getChef(result.user.id)
-                .success(function(chef) {
-                  Client.setUserChef(chef)
-                })
-                .error(function(data) {
-                  $scope.error = 'Kunde ej hämta kock data';
-                });
+              Client.setUser(data.user);
+              Client.setSessionId(data.sessionId);
+              Client.setUserProfile(data.profile);
+              Client.setUserChef(data.chef);
+              Client.setUserGuest(data.guest);
 
               $location.path('/home');
             })

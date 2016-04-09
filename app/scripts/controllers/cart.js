@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wecookApp')
-  .controller('CartCtrl', function($scope, $location, Client, OrderService) {
+  .controller('CartCtrl', function($scope, $location, Client) {
 
     $scope.cartOrders = Client.getCartOrders();
 
@@ -18,24 +18,11 @@ angular.module('wecookApp')
 
     $scope.placeOrders = function() {
 
-      angular.forEach($scope.cartOrders, function(order) {
-
-        var data = {
-          offerId: order.id
-        };
-
-        OrderService.createOrders(data)
-          .success(function() {
-
-            Client.clearCartOrders();
-
-            $location.path('/orders');
-          })
-          .error(function() {
-            $scope.info = undefined;
-            $scope.error = 'Kunde ej skapa beställningen';
-          });
-
-      });
+      $location.path('/cart_payment');
     };
+
+    $scope.removeOrder = function(offer) {
+      Client.removeCartOrder(offer);
+    };
+
   });

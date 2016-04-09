@@ -1,0 +1,40 @@
+<home-navigation></home-navigation>
+<div class="home-offset">
+  <div class="container">
+    <div class="jumbotron jumbo none-border-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row marketing text-center">
+              <h1>Swish'a över {{ calculateSum() }} kr till</h1>
+              <h3>0735345319</h3>
+              <h4>för att slutföra beställningen</h4>
+              <p>Tryck där efter på knappen nedan</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <button type="button" class="btn btn-success" ng-click="placeOrders()">Betalning Klar</button>
+        </div>
+        <div class="row">
+          <div class="page-header none-border-bottom">
+            <h3>{{cartOrders.length}} rätter valda</h3>
+            <dl>
+              <table class="table table-hover">
+                <tr ng-repeat="o in cartOrders track by $index">
+                  <td>
+                    <dl>
+                      <dt>{{o.product.name}} <small>av {{o.chef.firstname}}</small></dt>
+                      <dd>{{o.product.description}}</dd>
+                      <dt>{{o.adultPrice}} kr</dt>
+                    </dl>
+                  </td>
+                </tr>
+              </table>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
