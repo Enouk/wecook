@@ -4,6 +4,7 @@ angular.module('wecookApp')
   .controller('homeNavigationCtrl', function($scope, $location, Client, AuthService) {
 
     $scope.orders = Client.getOrders();
+    $scope.isLoggedIn = Client.isLoggedIn();
     $scope.cartOrders = Client.getCartOrders();
     $scope.profile = Client.getUserProfile();
     $scope.isChef = Client.isChefUser();

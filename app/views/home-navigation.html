@@ -9,13 +9,13 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#/">Te<span class="red">j</span>st</a>
-      <a class="navbar-brand pull-right" ng-show="isGuest==true" href="#/cart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <span class="label label-pill label-info">{{cartOrders.length}}</span></a>
+      <a class="navbar-brand pull-right" ng-show="isGuest==true" href="#/cart"><small>Varukorg</small> <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> <span class="label label-pill label-info">{{cartOrders.length}}</span></a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li ng-class="{active: contains('home') }"><a href="#/home">Meny</a></li>
-        <li class="dropdown">
+        <li class="dropdown" ng-show="isLoggedIn==true">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{profile.firstname}} <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <!-- Guest-->

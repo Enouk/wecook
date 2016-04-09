@@ -32,8 +32,8 @@
                 <div class="form-group">
                   <textarea type="text" class="form-control" ng-model="chef.$bio"></textarea>
                 </div>
-                <button type="submit" class="btn btn-default" ng-click="cancelEditProfile(chef)">Cancel</button>
                 <button type="submit" class="btn btn-success" ng-click="commitEditProfile(chef)">Spara profil</button>
+                <button type="submit" class="btn btn-default" ng-click="cancelEditProfile(chef)">Avbryt</button>
               </form>
             </div>
           </div>
@@ -80,8 +80,8 @@
                           <label class="pull-left" for="inputMaxOrders">Max antal beställningar</label>
                           <input type="text" class="form-control" ng-model="newOffer.maxOrders" placeholder="Ange max antal beställningar">
                         </div>
-                        <button type="submit" class="btn btn-default" ng-click="cancelOffer()">Cancel</button>
-                        <button type="submit" class="btn btn-success" ng-click="saveOffer(newOffer)">Spara dag</button>
+                        <button type="submit" class="btn btn-success" ng-click="saveOffer(newOffer)">Spara</button>
+                        <button type="submit" class="btn btn-default" ng-click="cancelOffer()">Avbryt</button>
                       </form>
                     </div>
                   </div>
@@ -166,11 +166,11 @@
                       <input type="text" class="form-control" ng-model="newproduct.description" placeholder="Kort beskrivning">
                     </div>
                     <div class="form-group">
-                      <label class="pull-left" for="inputNewProductIngredients">Ingredients</label>
+                      <label class="pull-left" for="inputNewProductIngredients">Ingredienser</label>
                       <input type="text" class="form-control" ng-model="newproduct.ingredients" placeholder="Ingredienser i rätten">
                     </div>
-                    <button type="submit" class="btn btn-default" ng-click="cancelProduct()">Cancel</button>
                     <button type="submit" class="btn btn-success" ng-click="addProduct(newproduct)">Spara</button>
+                    <button type="submit" class="btn btn-default" ng-click="cancelProduct()">Avbryt</button>
                   </form>
                 </div>
               </div>
@@ -211,8 +211,8 @@
                               <label class="pull-left" for="inputNewProductIngredients">Ingredients</label>
                               <input type="text" class="form-control" ng-model="p.$ingredients" placeholder="Ingredienser i rätten">
                             </div>
-                            <button type="submit" class="btn btn-default" ng-click="cancelEditProduct(p)">Cancel</button>
                             <button type="submit" class="btn btn-success" ng-click="commitEditProduct(p)">Spara</button>
+                            <button type="submit" class="btn btn-default" ng-click="cancelEditProduct(p)">Avbryt</button>
                           </form>
                         </div>
                       </div>

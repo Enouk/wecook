@@ -6,8 +6,8 @@
       <div class="container" ng-show="cartOrders.length === 0">
         <div class="col-md-12">
           <div class="row marketing text-center">
-            <h1>Inga beställningar gjorda</h1>
-            <p>Gå till <a href="#/home">Meny</a> för att beställa</p>
+            <h1>Varukorgen är tom</h1>
+            <p>Gå till <a href="#/home">Meny</a> för att lägga till varor</p>
           </div>
         </div>
       </div>
@@ -31,17 +31,12 @@
                 <tr ng-repeat="o in cartOrders track by $index">
                   <td>
                     <dl>
-                      <dt>{{o.product.name}} <small>av {{o.chef.firstname}}</small></dt>
+                      <dt>{{o.product.name}} av <a href="#/chef/{{o.chef.id}}">{{o.chef.firstname}}</a></dt>
                       <dd>{{o.product.description}}</dd>
                       <dt>{{o.adultPrice}} kr</dt>
                     </dl>
-                    <div class="btn-group" role="group" ng-show="o.$delete==undefined">
-                      <a class="btn btn-default" role="button" ng-click="o.$delete=true">Tabort</a>
-                    </div>
-                    <div class="btn-group" role="group" ng-show="o.$delete==true">
-                      <h5>Är du säker på att tabort {{o.product.name}}?</h5>
-                      <button type="button" class="btn btn-default" ng-click="removeOrder(o)">Japp</button>
-                      <button type="button" class="btn btn-default" ng-click="o.$delete=undefined">Avbryt</button>
+                    <div class="btn-group" role="group">
+                      <button type="button" class="btn btn-default" ng-click="removeOrder(o)">Ta bort</button>
                     </div>
                   </td>
                 </tr>
