@@ -38,7 +38,7 @@
                           </div>
                           <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid }">
                             <label class="pull-left" for="inputEmail">Email</label>
-                            <input class="form-control" placeholder="Din email" ng-model="user.email" name="email" type="text" required/>
+                            <input class="form-control" id="inputEmail" placeholder="Din email" ng-model="user.email" name="email" type="text" required/>
                           </div>
                           <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid }">
                             <label class="pull-left" for="inputUsername">Username</label>
@@ -64,6 +64,7 @@
                           </div>
                         </fieldset>
                       </form>
+                      <div class="alert alert-danger" ng-show="error!=null">{{error}}</div>
                     </div>
                   </div>
                 </div>

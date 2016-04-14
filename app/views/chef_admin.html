@@ -62,28 +62,30 @@
                             <option value="" selected hidden>Välj rätt</option>
                           </select>
                         </div>
-                        <div class="form-group">
-                          <label class="pull-left" for="inputPrice">Pris</label>
-                          <input type="text" id="inputPrice" class="form-control" ng-model="newOffer.adultPrice" placeholder="Ange pris">
+                        <div ng-show="newOffer.product!==undefined">
+                          <div class="form-group">
+                            <label class="pull-left" for="inputPrice">Pris</label>
+                            <input type="text" id="inputPrice" class="form-control" ng-model="newOffer.adultPrice" placeholder="Ange pris">
+                          </div>
+                          <div class="form-group">
+                            <label class="pull-left" for="inputDeliveryDate">Leveransdag</label>
+                            <input type="text" id="inputDeliveryDate" class="form-control" ng-model="newOffer.deliveryDate" placeholder="Ange leveransdag">
+                          </div>
+                          <div class="form-group">
+                            <label class="pull-left" for="inputLastOrderDate">Sista beställningsdag</label>
+                            <input type="text" id="inputLastOrderDate" class="form-control" ng-model="newOffer.lastOrderDate" placeholder="Ange sista beställningsdag">
+                          </div>
+                          <div class="form-group">
+                            <label class="pull-left" for="inputMinOrders">Minst antal beställningar</label>
+                            <input type="text" id="inputMinOrders" class="form-control" ng-model="newOffer.minOrders" placeholder="Ange minst antal beställningar">
+                          </div>
+                          <div class="form-group">
+                            <label class="pull-left" for="inputMaxOrders">Max antal beställningar</label>
+                            <input type="text" class="form-control" ng-model="newOffer.maxOrders" placeholder="Ange max antal beställningar">
+                          </div>
+                          <button type="submit" class="btn btn-success" ng-click="saveOffer(newOffer)">Spara</button>
+                          <button type="submit" class="btn btn-default" ng-click="cancelOffer()">Avbryt</button>
                         </div>
-                        <div class="form-group">
-                          <label class="pull-left" for="inputDeliveryDate">Leveransdag</label>
-                          <input type="text" id="inputDeliveryDate" class="form-control" ng-model="newOffer.deliveryDate" placeholder="Ange leveransdag">
-                        </div>
-                        <div class="form-group">
-                          <label class="pull-left" for="inputLastOrderDate">Sista beställningsdag</label>
-                          <input type="text" id="inputLastOrderDate" class="form-control" ng-model="newOffer.lastOrderDate" placeholder="Ange sista beställningsdag">
-                        </div>
-                        <div class="form-group">
-                          <label class="pull-left" for="inputMinOrders">Minst antal beställningar</label>
-                          <input type="text" id="inputMinOrders" class="form-control" ng-model="newOffer.minOrders" placeholder="Ange minst antal beställningar">
-                        </div>
-                        <div class="form-group">
-                          <label class="pull-left" for="inputMaxOrders">Max antal beställningar</label>
-                          <input type="text" class="form-control" ng-model="newOffer.maxOrders" placeholder="Ange max antal beställningar">
-                        </div>
-                        <button type="submit" class="btn btn-success" ng-click="saveOffer(newOffer)">Spara</button>
-                        <button type="submit" class="btn btn-default" ng-click="cancelOffer()">Avbryt</button>
                       </form>
                     </div>
                   </div>
@@ -126,18 +128,12 @@
                         </dl>
                       </li>
                     </ul>
-                    <ul class="nav nav-pills nav-justified">
-                      <li role="presentation" class="active"><a>Beställningar</a></li>
-                      <li role="presentation"><a>Tillagning</a></li>
-                      <li role="presentation"><a>Hämtning</a></li>
-                      <li role="presentation"><a>Klar</a></li>
-                    </ul>
                     <div class="btn-group" role="group" ng-show="offer.$delete==undefined">
-                      <button type="button" class="btn btn-default" ng-click="offer.$delete=true">Tabort</button>
+                      <button type="button" class="btn btn-default" ng-click="offer.$delete=true">Ta bort</button>
                     </div>
                     <div class="btn-group" role="group" ng-show="offer.$delete==true">
                       <h5>Är du säker på att tabort {{offer.product.name}}?</h5>
-                      <button type="button" class="btn btn-default" ng-click="removeOffer(offer)">Japp</button>
+                      <button type="button" class="btn btn-danger" ng-click="removeOffer(offer)">Japp</button>
                       <button type="button" class="btn btn-default" ng-click="offer.$delete=undefined">Avbryt</button>
                     </div>
                   </div>
@@ -192,7 +188,7 @@
                       </div>
                       <div class="btn-group" role="group" ng-show="p.$delete==true">
                         <h5>Är du säker på att tabort {{p.name}}?</h5>
-                        <button type="button" class="btn btn-default" ng-click="removeProduct(p)">Japp</button>
+                        <button type="button" class="btn btn-danger" ng-click="removeProduct(p)">Japp</button>
                         <button type="button" class="btn btn-default" ng-click="p.$delete=undefined">Avbryt</button>
                       </div>
                     </td>
@@ -210,7 +206,7 @@
                               <input type="text" class="form-control" ng-model="p.$description" placeholder="Kort beskrivning">
                             </div>
                             <div class="form-group">
-                              <label class="pull-left" for="inputNewProductIngredients">Ingredients</label>
+                              <label class="pull-left" for="inputNewProductIngredients">Ingredienser</label>
                               <input type="text" class="form-control" ng-model="p.$ingredients" placeholder="Ingredienser i rätten">
                             </div>
                             <button type="submit" class="btn btn-success" ng-click="commitEditProduct(p)">Spara</button>

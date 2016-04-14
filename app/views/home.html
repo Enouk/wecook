@@ -4,6 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="container home-offset">
+          {{deliveryDates}}
           <h4 class="text-center">Torsdag 3 Mars</h4>
           <div ng-repeat="offer in offers" class="col-sm-4 col-md-4">
             <div class="thumbnail">
@@ -41,7 +42,7 @@
                   </li>
                 </ul>
                 <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-default" ng-click="order(offer)">Lägg till portion</button>
+                  <button type="button" class="btn btn-default" ng-click="order(offer)">Lägg i varukorgen</button>
                   <!-- <button type="button" class="btn btn-default">Ångra</button> -->
                 </div>
               </div>

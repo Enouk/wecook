@@ -5,6 +5,9 @@ user=root
 node=root@digitalocean-prod-0
 version=0.0.1
 
+skyraid_dir=$(CURDIR)/../skyraid
+skyraid_webmachine_www_dir=${skyraid_dir}/apps/skyraid_webmachine/priv/www
+
 init:
 	bower install
 	npm install
@@ -18,6 +21,8 @@ build:
 stage:
 	-rm -rf $(CURDIR)/app/bower_components
 	ln -s $(CURDIR)/bower_components $(CURDIR)/app/bower_components
+	rm -f ${skyraid_webmachine_www_dir}
+	ln -s $(CURDIR)/app ${skyraid_webmachine_www_dir}
 
 distro-clean:
 	-rm -rf distro
