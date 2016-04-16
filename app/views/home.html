@@ -2,11 +2,12 @@
 <div class="home-offset">
   <div class="container-fluid">
     <div class="container">
-      <div class="row">
+      <div class="row" ng-repeat="dateAndOffer in dateAndOffers | orderBy: 'sortDate'">
         <div class="container home-offset">
-          {{deliveryDates}}
-          <h4 class="text-center">Torsdag 3 Mars</h4>
-          <div ng-repeat="offer in offers" class="col-sm-4 col-md-4">
+          <div class="border-bottom-line margin-bottom-small">
+            <h4 class="text-center">{{dateAndOffer.offers.length}} st {{dateAndOffer.moment}}</h4>
+          </div>
+          <div ng-repeat="offer in dateAndOffer.offers" class="col-sm-4 col-md-4">
             <div class="thumbnail">
               <img ng-src="{{offer.chef.thumbnail}}">
               <div class="caption">
@@ -42,7 +43,7 @@
                   </li>
                 </ul>
                 <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-default" ng-click="order(offer)">Lägg i varukorgen</button>
+                  <button type="button" class="btn btn-default" ng-click="order(offer)">Lägg i matkassen</button>
                   <!-- <button type="button" class="btn btn-default">Ångra</button> -->
                 </div>
               </div>
@@ -51,22 +52,5 @@
         </div>
       </div>
     </div>
-    <!--     <div class="row">
-      <div class="container">
-        <h3>Måltider</h3>
-        <div ng-repeat="product in products" class="col-sm-6 col-md-6">
-          <div class="thumbnail">
-            <img ng-src="{{product.image}}">
-            <div class="caption">
-              <h3><a href="#/product/{{product.id}}">{{product.name}}</a> <small>{{product.chef.firstname}}</small> <span class="pull-right">{{product.price}} kr</span></h3>
-              <p>{{product.description}}</p>
-              <div class="btn-group" role="group">
-                <p><a class="btn btn-success" role="button" ng-click="order(product)">Beställ</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
   </div>
 </div>

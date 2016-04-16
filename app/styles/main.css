@@ -51,6 +51,14 @@ body {
   border-bottom: none;
 }
 
+.border-bottom-line {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.margin-bottom-small {
+  margin-bottom: 10px;
+}
+
 .box-shadow-none {
   box-shadow: none;
 }

@@ -9,7 +9,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'facebook'
+    'facebook',
+    'angularMoment'
   ])
   .config(function($routeProvider, FacebookProvider) {
     // Set your appId through the setAppId method or
@@ -105,4 +106,8 @@ angular
 
 angular.module('wecookApp').config(function($httpProvider) {
   $httpProvider.interceptors.push('AuthInterceptor');
+});
+
+angular.module('wecookApp').run(function(amMoment) {
+  amMoment.changeLocale('se');
 });
