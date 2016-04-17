@@ -2,23 +2,23 @@
 
 
 angular.module('wecookApp')
-  .service('OfferService', function($http) {
+  .service('OfferUtil', function(DateUtil) {
 
-    this.getAllOffers = function() {
-      // return $http.get('/data/offers.json');
-      return $http.get('/api/wecook/offer');
-    };
+    this.uniqueDeliveryDatesOf = function(offers) {
 
-    this.getChefOffers = function(chefId) {
-      return $http.get('/api/wecook/chef/' + chefId + '/offer');
-    };
+      var dates = [];
 
-    this.saveOffer = function(offer) {
-      return $http.post('/api/wecook/offer', offer);
-    };
+      for (var i = 0; i < offers.length; i++) {
 
-    this.removeOffer = function(offer) {
-      return $http.delete('/api/wecook/offer/' + offer.id);
+        var offer = offers[i];
+        var index = dates.indexOf(offer.deliveryDate);
+
+        if (index === -1) {
+          dates.push(offer.deliveryDate);
+        }
+      }
+
+      return dates;
     };
 
     this.groupOffersByDeliveryDates = function(offers) {
@@ -33,8 +33,8 @@ angular.module('wecookApp')
 
         var dateAndOffers = {
           date: date,
-          sortDate: this.parseDate(date),
-          moment: this.formatDate(date),
+          sortDate: DateUtil.parseDate(date),
+          moment: DateUtil.formatDate(date),
           offers: []
         };
 

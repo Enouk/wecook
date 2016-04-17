@@ -2,7 +2,8 @@
 
 
 angular.module('wecookApp')
-  .controller('ChefCtrl', function($scope, $routeParams, Client, ChefService, OfferService, ProductService) {
+  .controller('ChefCtrl', function($scope, $routeParams, 
+    Client, ChefService, OfferService, ProductService, OfferUtil) {
 
     $scope.TABS = {
       MENU: 0,
@@ -31,6 +32,7 @@ angular.module('wecookApp')
     OfferService.getChefOffers(id)
       .success(function(offers) {
         // Pick out the first
+        $scope.dateAndOffers = OfferUtil.groupOffersByDeliveryDates(offers);
         $scope.menu = offers;
       })
       .error(function() {
