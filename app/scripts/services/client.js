@@ -97,6 +97,10 @@ angular.module('wecookApp')
       return _orders;
     };
 
+    this.setOrders = function(orders) {
+      _orders = orders;
+    };
+
     this.getCartOrders = function() {
       return _cartOrders;
     };

@@ -21,35 +21,8 @@ angular.module('wecookApp')
       return $http.delete('/api/wecook/offer/' + offer.id);
     };
 
-    this.groupOffersByDeliveryDates = function(offers) {
-
-      var deliveryDates = this.uniqueDeliveryDatesOf(offers);
-
-      var groupBy = [];
-
-      for (var i = 0; i < deliveryDates.length; i++) {
-
-        var date = deliveryDates[i];
-
-        var dateAndOffers = {
-          date: date,
-          sortDate: this.parseDate(date),
-          moment: this.formatDate(date),
-          offers: []
-        };
-
-        groupBy.push(dateAndOffers);
-
-        for (var j = 0; j < offers.length; j++) {
-          var offer = offers[j];
-
-          if (offer.deliveryDate === dateAndOffers.date) {
-            dateAndOffers.offers.push(offer);
-          }
-        }
-      }
-
-      return groupBy;
+    this.nextState = function(offer, nextState) {
+      return $http.post('/api/wecook/offer/' + offer.id + '/action/' + nextState); 
     };
 
   });

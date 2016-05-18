@@ -25,7 +25,8 @@ body {
 }
 
 .home-offset {
-  padding-top: 50px;
+  padding-top: 30px;
+  padding-bottom: 20px;
 }
 
 /* Main marketing message and sign up button */
@@ -91,6 +92,23 @@ body {
   
   margin-top: 100px;
   margin-bottom: 0px;
+}
+
+.cart-navbar {
+  background-color: #31B0D5;
+  color: white;
+}
+
+.cart-navbar a {
+  color: white;
+}
+
+.my-orders-navbar {
+  background-color: #F10C5A;
+}
+
+.my-orders-navbar a {
+  color: white;
 }
 
 .chef-profile-background{

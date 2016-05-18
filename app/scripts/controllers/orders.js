@@ -25,6 +25,6 @@ angular.module('wecookApp')
           $scope.info = undefined;
           $scope.error = 'Kunde ej tabort beställningen';
         });
-    }
+    };
 
   });

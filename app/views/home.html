@@ -9,7 +9,8 @@
           </div>
           <div ng-repeat="offer in dateAndOffer.offers" class="col-sm-4 col-md-4">
             <div class="thumbnail">
-              <img ng-src="{{offer.chef.thumbnail}}">
+              <img src="/images/Swedishchef.jpg">
+              <!-- <img ng-src="{{offer.chef.thumbnail}}"> -->
               <div class="caption">
                 <h4>{{offer.product.name}} <span class="pull-right">{{offer.adultPrice}} kr</span></h4>
                 <p>{{offer.product.description}}</p>
@@ -54,3 +55,4 @@
     </div>
   </div>
 </div>
+<cart-navbar></cart-navbar>

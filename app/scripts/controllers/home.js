@@ -1,26 +1,7 @@
 'use strict';
 
 angular.module('wecookApp')
-  .controller('HomeCtrl', function($scope, moment, ProductService, ChefService, OfferService, Client) {
-
-    $scope.init = function() {
-
-      OfferService.getAllOffers()
-        .success(function(offers) {
-
-          Client.setOffers(offers);
-
-          var deliveryDates = $scope.uniqueDeliveryDatesOf(offers);
-
-          $scope.dateAndOffers = $scope.groupByDeliveryDates(deliveryDates, offers);
-        })
-        .error(function() {
-          $scope.info = undefined;
-          $scope.error = 'Kunde ej hämta erbjudanden';
-        });
-    };
-
-    $scope.init();
+  .controller('HomeCtrl', function($scope, moment, ProductService, ChefService, OfferService, OrderService, Client) {
 
     $scope.order = function(offer) {
       Client.addCartOrder(offer);
@@ -108,5 +89,39 @@ angular.module('wecookApp')
       var YESTERDAY = REFERENCE.clone().add(1, 'days').startOf('day');
       return momentDate.isSame(YESTERDAY, 'd');
     };
+
+    $scope.init = function() {
+
+      OfferService.getAllOffers()
+        .success(function(offers) {
+
+          Client.setOffers(offers);
+
+          var deliveryDates = $scope.uniqueDeliveryDatesOf(offers);
+
+          $scope.dateAndOffers = $scope.groupByDeliveryDates(deliveryDates, offers);
+        })
+        .error(function() {
+          $scope.info = undefined;
+          $scope.error = 'Kunde ej hämta erbjudanden';
+        });
+
+      var guest = Client.getUserGuest();
+
+      if (guest !== undefined) {
+
+        OrderService.getGuestOrders(guest.id)
+          .success(function(orders) {
+            Client.setOrders(orders);
+            $scope.orders = Client.getOrders();
+          })
+          .error(function() {
+            $scope.info = undefined;
+            $scope.error = 'Kunde ej hämta beställningar';
+          });
+      }
+    };
+
+    $scope.init();
 
   });

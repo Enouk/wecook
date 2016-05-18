@@ -19,10 +19,12 @@
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{profile.firstname}} <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <!-- Guest-->
+            <li class="dropdown-header">Jag som kund</li>
             <li ng-class="{active: contains('orders') }" ng-show="isGuest==true"><a href="#/orders">Min Meny</a></li>
             <li ng-class="{active: contains('account') }" ng-show="isGuest==true"><a href="#/account">Mitt Konto</a></li>
             <li role="separator" ng-show="isGuest==true" class="divider"></li>
             <!-- Chef -->
+            <li class="dropdown-header">Jag som kock</li>
             <li ng-class="{active: contains('admin') }" ng-show="isChef==true"><a href="#/chef_admin">Mitt Kök</a></li>
             <li role="separator" ng-show="isChef==true" class="divider"></li>
             <!-- Logout-->

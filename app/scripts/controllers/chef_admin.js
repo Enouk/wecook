@@ -15,6 +15,26 @@ angular.module('wecookApp')
       ADMIN: 1
     };
 
+    $scope.STATES = [{
+      id: 'accepting_orders',
+      text: 'Beställningar',
+      nextAction: 'making',
+      nextActionText: 'Börja Tillagning'
+    }, {
+      id: 'making',
+      text: 'Tillagas',
+      nextAction: 'for_pickup',
+      nextActionText: 'Klar För Hämtning'
+    }, {
+      id: 'for_pickup',
+      text: 'Hämtning',
+      nextAction: 'completed',
+      nextActionText: 'Klar'
+    }, {
+      id: 'completed',
+      text: 'Klar'
+    }];
+
     $scope.type = $scope.TYPE.ADMIN;
     $scope.tab = $scope.TABS.MENU;
     $scope.menu = [];
@@ -152,8 +172,8 @@ angular.module('wecookApp')
         })
         .error(function(data) {
           $scope.info = undefined;
-          if (data.error == 'offer_exist_for_product') {
-            $scope.error = 'Kan ej abort en rätt som ingår i en meny';
+          if (data.error === 'offer_exist_for_product') {
+            $scope.error = 'Kan ej tabort en rätt som ingår i en meny';
           } else {
             $scope.error = 'Kunde ej tabort';
           }
@@ -195,6 +215,7 @@ angular.module('wecookApp')
     };
 
     $scope.removeOffer = function(offer) {
+
       OfferService.removeOffer(offer)
         .success(function() {
           var index = $scope.menu.indexOf(offer);
@@ -205,6 +226,18 @@ angular.module('wecookApp')
         .error(function() {
           $scope.info = undefined;
           $scope.error = 'Kunde ej tabort';
+        });
+    };
+
+    $scope.nextState = function(offer, nextState) {
+
+      OfferService.nextState(offer, nextState)
+        .success(function(updatedOffer) {
+          offer.status = updatedOffer.status;
+        })
+        .error(function() {
+          $scope.info = undefined;
+          $scope.error = 'Kunde ej ändra state';
         });
     };
 

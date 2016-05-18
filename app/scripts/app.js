@@ -99,6 +99,10 @@ angular
           access: 'private'
         }
       })
+      .when('/interested', {
+        templateUrl: 'views/interested.html',
+        controller: 'InterestedCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

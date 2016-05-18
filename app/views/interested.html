@@ -1,0 +1,54 @@
+<navigation></navigation>
+<div class="container navbar-offset">
+  <div class="jumbotron jumbo">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row marketing" ng-show="hasSubmitted===false">
+            <h1>Hjälp oss att utveckla Växjö's Saluhall på nätet</h1>
+            <p>Vi letar efter personer som älskar att äta eller laga god mat</p>
+            <p>Ange ditt email nedan så återkommer vi till dig!</p>
+          </div>
+          <div class="row marketing" ng-show="hasSubmitted===true">
+            <h1>Tack för visat intresse</h1>
+            <p>Vi hör av oss snarast till dig på <strong>{{user.email}}</strong></p>
+            <a href="#/" class="btn btn-success">Tillbaka</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-show="hasSubmitted===false">
+    <div class="col-md-12">
+      <div class="row marketing text-center">
+        <div class="panel panel-default">
+          <div class="panel-heading text-center">Anmäl ditt intresse</div>
+          <div class="panel-body">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                  <div class="panel-default">
+                    <div class="panel-body">
+                      <form name="userForm" role="form" ng-submit="userForm.$valid && submit()" novalidate>
+                        <fieldset>
+                          <div class="form-group">
+                            <input class="form-control" id="inputEmail" placeholder="Ange din email" ng-model="user.email" name="email" type="text" required/>
+                          </div>
+                          <!-- Change this to a button or input when using this as a form -->
+                          <div class="form-group">
+                            <button type="submit" id="submit" class="btn btn-success btn-lg">Skicka</button>
+                          </div>
+                        </fieldset>
+                      </form>
+                      <div class="alert alert-danger" ng-show="error!=null">{{error}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

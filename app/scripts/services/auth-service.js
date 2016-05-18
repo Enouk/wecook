@@ -3,6 +3,13 @@
 angular.module('wecookApp')
   .service('AuthService', function ($http) {
     
+    this.interested = function(Email) {
+      var data = {
+        'email': Email
+      };
+      return $http.post('/api/wecook/auth/interest', data);
+    };
+
     this.login = function(Username, Pass) {
       var data = {
         'username': Username,
